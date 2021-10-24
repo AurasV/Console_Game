@@ -22,6 +22,7 @@ struct item
 {
     string item_name, bonus_type; //item name  //type of bonus from the item
     int bonus_number; //the bonus amount
+    int price; //price of the item at a store
 };
 struct enemy
 {
@@ -36,6 +37,7 @@ void icm();
 void name();
 void enemies();
 void items();
+void enemy_stats();
 /*
 if (f.is_open())
         {
@@ -44,14 +46,15 @@ if (f.is_open())
         }
 int r = (rand() % max_number) + 1;
 */
+enemy iron_golem;
+item iron;
 void items()
 {
-    item iron;
-    iron.item_name = "Iron";
+    iron.item_name = "iron";
+    iron.price = 20;
 }
 void enemies()
 {
-    enemy iron_golem;
     iron_golem.enemy_name = "Iron Golem";
     iron_golem.ATK = 7;
     iron_golem.DEF = 1;
@@ -60,9 +63,12 @@ void enemies()
     iron_golem.MPP = 1;
     iron_golem.MDF = 1;
     iron_golem.MAK = 1;
-    iron_golem.drops = "Iron";
+    iron_golem.drops = "iron";
 }
-
+void enemy_stats()
+{
+    cout << iron_golem.ATK << " " << iron_golem.DEF << " " << iron_golem.SPD << " " << iron_golem.HLP << " " << iron_golem.MPP << " " << iron_golem.MDF << " " << iron_golem.MAK << endl << iron_golem.drops;
+}
 void languagechoice()
 {
     cout << "Choose a language.\nAlege limba.\n\n\n1)English/Engleza\n2)Romanian/Romana\n";
@@ -140,7 +146,8 @@ int main()
     srand((int)time(0));
     languagechoice(); //choose langauge 
     read(a); //read the file containing the corresponding story
+    name();
     enemies();
     items();
-
+    
 }
