@@ -13,7 +13,7 @@ ifstream questionsromanian("questionromanian.txt"); //file containg questions ro
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
-string b, first_name, last_name, c, story[100], questions[100];
+string b, first_name, last_name, c, story[10000], questions[10000];
 int i, language, j;
 char a;
 void languagechoice();
@@ -32,6 +32,11 @@ void languagechoice()
 {
     cout << "Choose a language.\nAlege limba.\n\n\n1)English/Engleza\n2)Romanian/Romana\n";
     ico(); //read language option
+    if (a != '1' && a != '2')
+    {
+        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou" << endl; //incorrect input for the language choice
+        languagechoice();
+    }
 }
 void read(char a) //read the story and the questions
 {
@@ -70,11 +75,6 @@ void read(char a) //read the story and the questions
                 questions[j] = b; //add the line to the questions string
             }
         language = 2;
-    }
-    if (a != '1' && a != '2')
-    {
-        cout << "Incorrect Input/Intrare Incorect"; //incorrect input for the language choice
-        languagechoice();
     }
 }
 void ico() //input one character and clear console
