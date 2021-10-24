@@ -1,0 +1,14 @@
+ATK
+DEF
+SPD
+HLP
+MPP
+MDF
+MAK
+attack
+defense
+speed
+health points
+mana points
+magic defense
+magic attack

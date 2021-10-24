@@ -5,6 +5,8 @@
 #include <string.h>
 #include <string>
 #include <conio.h>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 ifstream f("romana.txt"); //romanian version of the story
 ifstream g("engleza.txt"); //english version of the story
@@ -14,20 +16,53 @@ ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
 string b, first_name, last_name, c, story[10000], questions[10000];
-int i, language, j;
+int i, language, j, k, r;
 char a;
+struct item
+{
+    string item_name, bonus_type; //item name  //type of bonus from the item
+    int bonus_number; //the bonus amount
+};
+struct enemy
+{
+    string enemy_name;
+    float ATK, DEF, SPD, HLP, MPP, MDF, MAK;
+    string drops;
+};
 void languagechoice();
 void read(char);
 void ico();
 void icm();
 void name();
+void enemies();
+void items();
 /*
 if (f.is_open())
         {
             while (getline(f, b))
                 cout << b << "\n";
         }
+int r = (rand() % max_number) + 1;
 */
+void items()
+{
+    item iron;
+    iron.item_name = "Iron";
+}
+void enemies()
+{
+    enemy iron_golem;
+    iron_golem.enemy_name = "Iron Golem";
+    iron_golem.ATK = 7;
+    iron_golem.DEF = 1;
+    iron_golem.SPD = 0.25;
+    iron_golem.HLP = 100;
+    iron_golem.MPP = 1;
+    iron_golem.MDF = 1;
+    iron_golem.MAK = 1;
+    iron_golem.drops = "Iron";
+}
+
 void languagechoice()
 {
     cout << "Choose a language.\nAlege limba.\n\n\n1)English/Engleza\n2)Romanian/Romana\n";
@@ -102,7 +137,10 @@ void name()
 }
 int main()
 {
+    srand((int)time(0));
     languagechoice(); //choose langauge 
     read(a); //read the file containing the corresponding story
-    name();
+    enemies();
+    items();
+
 }
