@@ -26,6 +26,7 @@ ofstream save3("save3.txt"); //save file three
 string b, first_name, last_name, c, story[10000], questions[10000], d;
 int i, language, j, k, r, file_number, e;
 char a;
+bool ok_name = false;
 struct item
 {
     string item_name, bonus_type; //item name  //type of bonus from the item
@@ -45,6 +46,7 @@ struct player
 };
 enemy iron_golem, zombie, skeleton, creeper;
 item iron, rotten_flesh, bone, gunpoweder;
+player pc;
 void languagechoice();
 void read(char);
 void ico();
@@ -77,6 +79,7 @@ void readenemies()
 }
 void enemy_stats(enemy &x)
 {
+    system("CLS");
     cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.HLP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
     cout << endl << endl;
 }
@@ -141,16 +144,27 @@ void icm() //input more characters and clear console
 }
 void name()
 {
-    cout << story[1] << endl; //ask for last name
-    cin >> last_name; //read last name
+    if (ok_name != true) //first time run test
+        cout << story[1] << endl; //ask for name
+    else //if the input was incorrect last time
+    {
+        cout << "Incorrect Input. Please try again" << endl;
+        cout << story[1] << endl;
+    }
+    getline(cin, pc.player_name); //read name
     system("CLS");
-    cout << story[2] << endl; //ask for first name
-    cin >> first_name; //read first name
-    system("CLS");
-    cout << questions[1] << " " << char(39) << last_name << " " << first_name << char(39) << " " << questions[2] << "\n\n" << questions[3] << "\n" << questions[4] << "\n"; //ask if the name is correct
+    cout << questions[1] << " " << char(39) << pc.player_name << char(39) << " " << questions[2] << "\n\n" << questions[3] << "\n" << questions[4] << "\n"; //ask if the name is correct
     ico(); //read the answer
     if (a == '2') //check if the name is correct
+    {
+        ok_name = false; //reset ok for acknowledged incorrecst name
         name(); //redo name input if the name is incorrect
+    }
+    if (a != '2' && a != '1') //check if the input is correct
+    {
+        ok_name = true;
+        name();
+    }
 }
 void items()
 {
@@ -163,7 +177,6 @@ void playercurrentstate(player &x)
 }
 int main()
 {
-    file_number = 0;
     srand((int)time(0)); //for randomness
     languagechoice(); //choose langauge 
     read(a); //read the file containing the corresponding story
