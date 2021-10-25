@@ -45,7 +45,7 @@ struct player
     float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //player number stats
 };
 enemy iron_golem, zombie, skeleton, creeper;
-item iron, rotten_flesh, bone, gunpoweder;
+item iron, rotten_flesh, bone, gunpowder;
 player pc;
 void languagechoice();
 void read(char);
@@ -65,9 +65,18 @@ void enemies(enemy &x)
     getline(h, d); //getting line
     x.enemy_name = d; //enemy name 
     getline(h, d); //getting line
-    x.drops = d; //enemy drops
+    if (language == 1)
+    {
+        x.drops = d; //enemy drops
+        getline(h, d);
+    }
+    else
+    {
+        getline(h, d);
+        x.drops = d;
+    }
     h >> x.ATK >> x.DEF >> x.SPD >> x.HLP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
-    file_number = file_number + 10;
+    file_number = file_number + 11;
     h.close();
 }
 void readenemies()
@@ -80,7 +89,10 @@ void readenemies()
 void enemy_stats(enemy &x)
 {
     system("CLS");
-    cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.HLP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
+    if (language == 1)
+        cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.HLP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
+    else
+        cout << "Nume: " << x.enemy_name << endl << "Atac: " << x.ATK << endl << "Aparare: " << x.DEF << endl << "Viteza: " << x.SPD << endl << "Puncte Viata: " << x.HLP << endl << "Puncte Viata Curente: " << x.CHP << endl << "Puncte Magie: " << x.MPP << endl << "Aparare Magica: " << x.MDF << endl << "Atac Magic: " << x.MAK << endl << "Drop-uri: " << x.drops; // output enemy stats and drops
     cout << endl << endl;
 }
 void languagechoice()
@@ -168,8 +180,24 @@ void name()
 }
 void items()
 {
-    iron.item_name = "iron";
+    if (language == 1)
+    {
+        iron.item_name = "Iron";
+        rotten_flesh.item_name = "Rotten Flesh";
+        bone.item_name = "Bone";
+        gunpowder.item_name = "Gunpowder";
+    }
+    else
+    {
+        iron.item_name = "Fier";
+        rotten_flesh.item_name = "Carne Putrezita";
+        bone.item_name = "Os";
+        gunpowder.item_name = "Praf de pusca";
+    }
     iron.price = 20;
+    rotten_flesh.price = 10;
+    bone.price = 5;
+    gunpowder.price = 5;
 }
 void playercurrentstate(player &x)
 {

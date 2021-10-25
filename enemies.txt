@@ -1,5 +1,6 @@
 Iron Golem
-iron
+Iron
+Fier
 7
 2
 0.25
@@ -10,6 +11,7 @@ iron
 1
 Zombie
 Rotten flesh
+Carne Putrezita
 2.5
 2
 1
@@ -20,6 +22,7 @@ Rotten flesh
 1
 Skeleton
 Bone
+Os
 4
 2
 1
@@ -30,6 +33,7 @@ Bone
 1
 Creeper
 Gunpowder
+Praf de Pusca
 22.5
 2
 1
