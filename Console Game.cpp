@@ -1,12 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-/*
-if (f.is_open())
-        {
-            while (getline(f, b))
-                cout << b << "\n";
-        }
-int r = (rand() % max_number) + 1;
-*/
 #include <iostream>
 #include <cmath>
 #include <fstream>
@@ -16,16 +8,23 @@ int r = (rand() % max_number) + 1;
 #include <cstdlib>
 #include <ctime>
 using namespace std;
+/*
+if (f.is_open())
+        {
+            while (getline(f, b))
+                cout << b << "\n";
+        }
+int r = (rand() % max_number) + 1;
+*/
 ifstream f("romana.txt"); //romanian version of the story
 ifstream g("engleza.txt"); //english version of the story
-ifstream h("enemies.txt"); //file containing enemy stats and names
 ifstream questionsenglish("questionenglish.txt"); //file containing questions english
 ifstream questionsromanian("questionromanian.txt"); //file containg questions romanian
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
-string b, first_name, last_name, c, story[10000], questions[10000];
-int i, language, j, k, r;
+string b, first_name, last_name, c, story[10000], questions[10000], d;
+int i, language, j, k, r, file_number, e;
 char a;
 struct item
 {
@@ -35,18 +34,17 @@ struct item
 };
 struct enemy
 {
-    string enemy_name, drops;
-    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK;
+    string enemy_name; //enemy name
+    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //enemy number stats
+    string drops; //enemy dropped item
 };
 struct player 
 {
-    string player_name;
-    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK;
+    string player_name; //player name
+    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //player number stats
 };
-struct inventory
-{
-
-};
+enemy iron_golem, zombie, skeleton, creeper;
+item iron, rotten_flesh, bone, gunpoweder;
 void languagechoice();
 void read(char);
 void ico();
@@ -55,20 +53,32 @@ void name();
 void enemies(enemy &x);
 void enemy_stats(enemy &x);
 void items();
-void playercurrentstate();
-enemy iron_golem;
-item iron;
+void readenemies();
+void playercurrentstate(player &x);
 void enemies(enemy &x)
 {
-    getline(h, b);
-    x.enemy_name = b;
-    h >> x.ATK >> x.DEF >> x.SPD >> x.HLP >> x.CHP >> x.MPP >> x.MDF >> x.MAK;
-    getline(h, b);
-    x.drops = b;
+    ifstream h("enemies.txt"); //file containing enemy stats and names
+    for (e = 1; e <= file_number; e++)
+        getline(h, b); //skip unncessary lines
+    getline(h, d); //getting line
+    x.enemy_name = d; //enemy name 
+    getline(h, d); //getting line
+    x.drops = d; //enemy drops
+    h >> x.ATK >> x.DEF >> x.SPD >> x.HLP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
+    file_number = file_number + 10;
+    h.close();
+}
+void readenemies()
+{
+    enemies(iron_golem);
+    enemies(zombie);
+    enemies(skeleton);
+    enemies(creeper);
 }
 void enemy_stats(enemy &x)
 {
-    cout << x.enemy_name << " " << x.ATK << " " << x.DEF << " " << x.SPD << " " << x.HLP << " " << x.CHP << " " << x.MPP << " " << x.MDF << " " << x.MAK << endl << x.drops;
+    cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.HLP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
+    cout << endl << endl;
 }
 void languagechoice()
 {
@@ -147,18 +157,17 @@ void items()
     iron.item_name = "iron";
     iron.price = 20;
 }
-void playercurrentstate()
+void playercurrentstate(player &x)
 {
 
 }
 int main()
 {
-    srand((int)time(0));
+    file_number = 0;
+    srand((int)time(0)); //for randomness
     languagechoice(); //choose langauge 
     read(a); //read the file containing the corresponding story
-    name();
-    enemies(iron_golem);
-    enemy_stats(iron_golem);
-    cout << iron_golem.drops;
+    name(); //ask for the name of the character
+    readenemies();
     items();
 }
