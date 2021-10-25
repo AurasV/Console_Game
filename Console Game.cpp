@@ -1,4 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
+/*
+if (f.is_open())
+        {
+            while (getline(f, b))
+                cout << b << "\n";
+        }
+int r = (rand() % max_number) + 1;
+*/
 #include <iostream>
 #include <cmath>
 #include <fstream>
@@ -10,6 +18,7 @@
 using namespace std;
 ifstream f("romana.txt"); //romanian version of the story
 ifstream g("engleza.txt"); //english version of the story
+ifstream h("enemies.txt"); //file containing enemy stats and names
 ifstream questionsenglish("questionenglish.txt"); //file containing questions english
 ifstream questionsromanian("questionromanian.txt"); //file containg questions romanian
 ofstream save1("save1.txt"); //save file one
@@ -26,48 +35,40 @@ struct item
 };
 struct enemy
 {
-    string enemy_name;
-    float ATK, DEF, SPD, HLP, MPP, MDF, MAK;
-    string drops;
+    string enemy_name, drops;
+    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK;
+};
+struct player 
+{
+    string player_name;
+    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK;
+};
+struct inventory
+{
+
 };
 void languagechoice();
 void read(char);
 void ico();
 void icm();
 void name();
-void enemies();
+void enemies(enemy &x);
+void enemy_stats(enemy &x);
 void items();
-void enemy_stats();
-/*
-if (f.is_open())
-        {
-            while (getline(f, b))
-                cout << b << "\n";
-        }
-int r = (rand() % max_number) + 1;
-*/
+void playercurrentstate();
 enemy iron_golem;
 item iron;
-void items()
+void enemies(enemy &x)
 {
-    iron.item_name = "iron";
-    iron.price = 20;
+    getline(h, b);
+    x.enemy_name = b;
+    h >> x.ATK >> x.DEF >> x.SPD >> x.HLP >> x.CHP >> x.MPP >> x.MDF >> x.MAK;
+    getline(h, b);
+    x.drops = b;
 }
-void enemies()
+void enemy_stats(enemy &x)
 {
-    iron_golem.enemy_name = "Iron Golem";
-    iron_golem.ATK = 7;
-    iron_golem.DEF = 1;
-    iron_golem.SPD = 0.25;
-    iron_golem.HLP = 100;
-    iron_golem.MPP = 1;
-    iron_golem.MDF = 1;
-    iron_golem.MAK = 1;
-    iron_golem.drops = "iron";
-}
-void enemy_stats()
-{
-    cout << iron_golem.ATK << " " << iron_golem.DEF << " " << iron_golem.SPD << " " << iron_golem.HLP << " " << iron_golem.MPP << " " << iron_golem.MDF << " " << iron_golem.MAK << endl << iron_golem.drops;
+    cout << x.enemy_name << " " << x.ATK << " " << x.DEF << " " << x.SPD << " " << x.HLP << " " << x.CHP << " " << x.MPP << " " << x.MDF << " " << x.MAK << endl << x.drops;
 }
 void languagechoice()
 {
@@ -141,13 +142,23 @@ void name()
     if (a == '2') //check if the name is correct
         name(); //redo name input if the name is incorrect
 }
+void items()
+{
+    iron.item_name = "iron";
+    iron.price = 20;
+}
+void playercurrentstate()
+{
+
+}
 int main()
 {
     srand((int)time(0));
     languagechoice(); //choose langauge 
     read(a); //read the file containing the corresponding story
     name();
-    enemies();
+    enemies(iron_golem);
+    enemy_stats(iron_golem);
+    cout << iron_golem.drops;
     items();
-    
 }
