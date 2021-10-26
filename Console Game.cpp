@@ -11,15 +11,17 @@ using namespace std;
 /*
 if (f.is_open())
         {
-            while (getline(f, b))
+            while (getline(f, b)) //read entire line
                 cout << b << "\n";
         }
-int r = (rand() % max_number) + 1;
+int r = (rand() % max_number) + 1; //randomness
 */
-ifstream f("romana.txt"); //romanian version of the story
-ifstream g("engleza.txt"); //english version of the story
+ifstream romanianstory("romana.txt"); //romanian version of the story
+ifstream englishstory("engleza.txt"); //english version of the story
+ifstream hungarianstory("hungarian.txt"); //hungarian version of the story
 ifstream questionsenglish("questionenglish.txt"); //file containing questions english
-ifstream questionsromanian("questionromanian.txt"); //file containg questions romanian
+ifstream questionsromanian("questionromanian.txt"); //file containing questions romanian
+ifstream questionshungarian("questionshungarian.txt"); //file containing questions hungarian
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
@@ -36,7 +38,7 @@ struct item
 struct enemy
 {
     string enemy_name; //enemy name
-    float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //enemy number stats
+    float ATK, DEF, SPD, THP, CHP, MPP, MDF, MAK; //enemy number stats
     string drops; //enemy dropped item
 };
 struct player 
@@ -44,11 +46,11 @@ struct player
     string player_name; //player name
     float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //player number stats
 };
-enemy iron_golem, zombie, skeleton, creeper;
+enemy iron_golem, zombie, skeleton, creeper, husk;
 item iron, rotten_flesh, bone, gunpowder;
 player pc;
 void languagechoice();
-void read(char);
+void read_language(char a, int &language);
 void ico();
 void icm();
 void name();
@@ -57,7 +59,7 @@ void enemy_stats(enemy &x);
 void items();
 void readenemies();
 void playercurrentstate(player &x);
-void enemies(enemy &x)
+void enemies(enemy& x)
 {
     ifstream h("enemies.txt"); //file containing enemy stats and names
     for (e = 1; e <= file_number; e++)
@@ -69,14 +71,22 @@ void enemies(enemy &x)
     {
         x.drops = d; //enemy drops
         getline(h, d);
+        getline(h, d);
     }
-    else
+    if (language == 2)
     {
         getline(h, d);
         x.drops = d;
+        getline(h, d);
     }
-    h >> x.ATK >> x.DEF >> x.SPD >> x.HLP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
-    file_number = file_number + 11;
+    if (language == 3)
+    {
+        getline(h, d);
+        getline(h, d);
+        x.drops = d;
+    }
+    h >> x.ATK >> x.DEF >> x.SPD >> x.THP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
+    file_number = file_number + 12;
     h.close();
 }
 void readenemies()
@@ -85,33 +95,36 @@ void readenemies()
     enemies(zombie);
     enemies(skeleton);
     enemies(creeper);
+    enemies(husk);
 }
 void enemy_stats(enemy &x)
 {
-    system("CLS");
+    //system("CLS");
     if (language == 1)
-        cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.HLP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
-    else
-        cout << "Nume: " << x.enemy_name << endl << "Atac: " << x.ATK << endl << "Aparare: " << x.DEF << endl << "Viteza: " << x.SPD << endl << "Puncte Viata: " << x.HLP << endl << "Puncte Viata Curente: " << x.CHP << endl << "Puncte Magie: " << x.MPP << endl << "Aparare Magica: " << x.MDF << endl << "Atac Magic: " << x.MAK << endl << "Drop-uri: " << x.drops; // output enemy stats and drops
+        cout << "Name: " << x.enemy_name << endl << "Attack: " << x.ATK << endl << "Defense: " << x.DEF << endl << "Speed: " << x.SPD << endl << "Health Points: " << x.THP << endl << "Current Health Points: " << x.CHP << endl << "Magical Points: " << x.MPP << endl << "Magical Defense: " << x.MDF << endl << "Magical Attack: " << x.MAK << endl << "Drops: " << x.drops; // output enemy stats and drops
+    if (language == 2)
+        cout << "Nume: " << x.enemy_name << endl << "Atac: " << x.ATK << endl << "Aparare: " << x.DEF << endl << "Viteza: " << x.SPD << endl << "Puncte Viata: " << x.THP << endl << "Puncte Viata Curente: " << x.CHP << endl << "Puncte Magie: " << x.MPP << endl << "Aparare Magica: " << x.MDF << endl << "Atac Magic: " << x.MAK << endl << "Drop-uri: " << x.drops; // output enemy stats and drops
+    if (language == 3)
+        cout << "Name but hungarian: " << x.enemy_name << endl << "Attack but hungarian: " << x.ATK << endl << "Defense but hungarian: " << x.DEF << endl << "Speed but hungarian: " << x.SPD << endl << "Current Health Points but hungarian: " << x.THP << endl << "Total Health Points but hungarian: " << x.CHP << endl << "Magic Points but hungarian: " << x.MPP << endl << "Magic Defense but hungarian: " << x.MDF << endl << "Magic Attack but hungarian: " << x.MAK << endl << "Drops but hungarian: " << x.drops; // output enemy stats and drops
     cout << endl << endl;
 }
 void languagechoice()
 {
-    cout << "Choose a language.\nAlege limba.\n\n\n1)English/Engleza\n2)Romanian/Romana\n";
+    cout << "Choose a language.\nAlege limba.\nChoose a language but hungarian.\n\n\n1)English/Engleza\n2)Romanian/Romana\n3)Hungarian/Hungarian but hungarian\n";
     ico(); //read language option
-    if (a != '1' && a != '2')
+    if (a != '1' && a != '2' && a!='3')
     {
-        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou" << endl; //incorrect input for the language choice
+        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou/Incorrect input please try again but hungarian" << endl; //incorrect input for the language choice
         languagechoice();
     }
 }
-void read(char a) //read the story and the questions
+void read_language(char a, int &language) //read the story and the questions
 {
-    if (a == '1') //check if the answer is english
+    if (a == '1')
     {
-        if (g.is_open()) //check if the file is open
+        if (englishstory.is_open()) //check if the file is open
         {
-            while (getline(g, b)) //read line and store in b
+            while (getline(englishstory, b)) //read line and store in b
             {
                 i++; //increase the number for the line of the story
                 story[i] = b; //add the line to the story string
@@ -125,11 +138,11 @@ void read(char a) //read the story and the questions
             }
         language = 1;
     }
-    if (a == '2') //check if the answer is romanian
+    if (a == '2')
     {
-        if (f.is_open()) //check if the file is open
+        if (romanianstory.is_open()) //check if the file is open
         {
-            while (getline(f, b)) //read line and store in b
+            while (getline(romanianstory, b)) //read line and store in b
             {
                 i++; //increase the number for the line of the story
                 story[i] = b; //add the line to the story string
@@ -142,6 +155,24 @@ void read(char a) //read the story and the questions
                 questions[j] = b; //add the line to the questions string
             }
         language = 2;
+    }
+    if(a=='3')
+    {
+        if (hungarianstory.is_open()) //check if the file is open
+        {
+            while (getline(hungarianstory, b)) //read line and store in b
+            {
+                i++; //increase the number for the line of the story
+                story[i] = b; //add the line to the story string
+            }
+        }
+        if (questionshungarian.is_open()) //check if the file is open
+            while (getline(questionshungarian, b)) //read line and store in b
+            {
+                j++; //increase the number for the line of the questions
+                questions[j] = b; //add the line to the questions string
+            }
+        language = 3;
     }
 }
 void ico() //input one character and clear console
@@ -180,19 +211,23 @@ void name()
 }
 void items()
 {
-    if (language == 1)
+    switch (language)
     {
+    case 1:
         iron.item_name = "Iron";
         rotten_flesh.item_name = "Rotten Flesh";
         bone.item_name = "Bone";
         gunpowder.item_name = "Gunpowder";
-    }
-    else
-    {
+    case 2:
         iron.item_name = "Fier";
         rotten_flesh.item_name = "Carne Putrezita";
         bone.item_name = "Os";
         gunpowder.item_name = "Praf de pusca";
+    case 3:
+        iron.item_name = "Iron but hungarian";
+        rotten_flesh.item_name = "Rotten Flesh but hungarian";
+        bone.item_name = "Bone but hungarian";
+        gunpowder.item_name = "Gunpowder but hungarian";
     }
     iron.price = 20;
     rotten_flesh.price = 10;
@@ -207,7 +242,7 @@ int main()
 {
     srand((int)time(0)); //for randomness
     languagechoice(); //choose langauge 
-    read(a); //read the file containing the corresponding story
+    read_language(a, language); //read the file containing the corresponding story
     name(); //ask for the name of the character
     readenemies();
     items();
