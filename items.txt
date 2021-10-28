@@ -1,15 +1,16 @@
-Iron
-Fier
-Iron but hungarian
+Iron_Ingot
+Lingou_de_Fier
+Vasrúd
 20
-Rotten Flesh
-Carne Putrezita
-Rotten Flesh but hungarian
+Rotten_Flesh
+Carne_Putrezita
+Rohadt_Hús
 10
 Bone
 Os
+Csont
 5
-Gunpoweder
-Praf de Pusca
-Gunpowder but hungarian
+Gunpowder
+Praf_de_Pusca
+Puskapor
 5

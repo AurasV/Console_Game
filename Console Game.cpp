@@ -156,7 +156,7 @@ void read_language(char a, int &language) //read the story and the questions
             }
         language = 2;
     }
-    if(a=='3')
+    if (a == '3')
     {
         if (hungarianstory.is_open()) //check if the file is open
         {

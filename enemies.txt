@@ -1,7 +1,7 @@
 Iron Golem
-Iron
-Fier
-Iron but hungarian
+Iron_Ingot
+Lingou_de_Fier
+Vasrúd
 7
 2
 0.25
@@ -11,9 +11,9 @@ Iron but hungarian
 1
 1
 Zombie
-Rotten flesh
-Carne Putrezita
-Rotten flesh but hungarian
+Rotten_Flesh
+Carne_Putrezita
+Rohadt_Hús
 2.5
 2
 1
@@ -25,7 +25,7 @@ Rotten flesh but hungarian
 Skeleton
 Bone
 Os
-Bone but hungarian
+Csont
 4
 2
 1
@@ -36,8 +36,8 @@ Bone but hungarian
 1
 Creeper
 Gunpowder
-Praf de Pusca
-Gunpowder but hungarian
+Praf_de_Pusca
+Puskapor
 22.5
 2
 1
@@ -47,9 +47,9 @@ Gunpowder but hungarian
 1
 1
 Husk
-Rotten flesh
-Carne Putrezita
-Rotten flesh but hungarian
+Rotten_flesh
+Carne_Putrezita
+Rohadt_Hús
 2.5
 2
 1
