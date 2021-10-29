@@ -19,35 +19,41 @@ int r = (rand() % max_number) + 1; //randomness
 ifstream romanianstory("romana.txt"); //romanian version of the story
 ifstream englishstory("engleza.txt"); //english version of the story
 ifstream hungarianstory("hungarian.txt"); //hungarian version of the story
-ifstream questionsenglish("questionenglish.txt"); //file containing questions english
-ifstream questionsromanian("questionromanian.txt"); //file containing questions romanian
+ifstream questionsenglish("questionsenglish.txt"); //file containing questions english
+ifstream questionsromanian("questionsromanian.txt"); //file containing questions romanian
 ifstream questionshungarian("questionshungarian.txt"); //file containing questions hungarian
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
 string b, first_name, last_name, c, story[10000], questions[10000], d;
-int i, language, j, k, r, file_number, e;
+int i, language, j, k, r, enemy_number, e, item_number;
 char a;
 bool ok_name = false;
-struct item
+struct item //items
 {
-    string item_name, bonus_type; //item name  //type of bonus from the item
-    int bonus_number; //the bonus amount
+    string name; //item name  //type of bonus from the item
     int price; //price of the item at a store
 };
-struct enemy
+struct enemy //enemies
 {
     string enemy_name; //enemy name
     float ATK, DEF, SPD, THP, CHP, MPP, MDF, MAK; //enemy number stats
     string drops; //enemy dropped item
 };
-struct player 
+struct player //player
 {
     string player_name; //player name
     float ATK, DEF, SPD, HLP, CHP, MPP, MDF, MAK; //player number stats
 };
+struct armor //amors
+{
+    string name; //name
+    float DEF; //def bonus
+    string place; //equip place
+};
 enemy iron_golem, zombie, skeleton, creeper, husk;
-item iron, rotten_flesh, bone, gunpowder;
+item iron_ingot, rotten_flesh, bone, gunpowder;
+armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb;
 player pc;
 void languagechoice();
 void read_language(char a, int &language);
@@ -58,11 +64,12 @@ void enemies(enemy &x);
 void enemy_stats(enemy &x);
 void items();
 void readenemies();
+void readitems();
 void playercurrentstate(player &x);
 void enemies(enemy& x)
 {
     ifstream h("enemies.txt"); //file containing enemy stats and names
-    for (e = 1; e <= file_number; e++)
+    for (e = 1; e <= enemy_number; e++)
         getline(h, b); //skip unncessary lines
     getline(h, d); //getting line
     x.enemy_name = d; //enemy name 
@@ -86,18 +93,36 @@ void enemies(enemy& x)
         x.drops = d;
     }
     h >> x.ATK >> x.DEF >> x.SPD >> x.THP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
-    file_number = file_number + 12;
+    enemy_number = enemy_number + 12;
     h.close();
 }
-void readenemies()
+void items(item& x)
 {
-    enemies(iron_golem);
-    enemies(zombie);
-    enemies(skeleton);
-    enemies(creeper);
-    enemies(husk);
+    ifstream items("items.txt");
+    for (e = 1; e <= item_number; e++)
+        getline(items, b);
+    getline(items, b);
+    if (language == 1)
+    {
+        x.name = b;
+        getline(items, b);
+        getline(items, b);
+    }
+    if (language == 2)
+    {
+        getline(items, b);
+        x.name = b;
+        getline(items, b);
+    }
+    if (language == 3)
+    {
+        getline(items, b);
+        getline(items, b);
+        x.name = b;
+    }
+    items >> x.price;
 }
-void enemy_stats(enemy &x)
+void enemy_stats(enemy& x)
 {
     //system("CLS");
     if (language == 1)
@@ -108,17 +133,7 @@ void enemy_stats(enemy &x)
         cout << "Name but hungarian: " << x.enemy_name << endl << "Attack but hungarian: " << x.ATK << endl << "Defense but hungarian: " << x.DEF << endl << "Speed but hungarian: " << x.SPD << endl << "Current Health Points but hungarian: " << x.THP << endl << "Total Health Points but hungarian: " << x.CHP << endl << "Magic Points but hungarian: " << x.MPP << endl << "Magic Defense but hungarian: " << x.MDF << endl << "Magic Attack but hungarian: " << x.MAK << endl << "Drops but hungarian: " << x.drops; // output enemy stats and drops
     cout << endl << endl;
 }
-void languagechoice()
-{
-    cout << "Choose a language.\nAlege limba.\nChoose a language but hungarian.\n\n\n1)English/Engleza\n2)Romanian/Romana\n3)Hungarian/Hungarian but hungarian\n";
-    ico(); //read language option
-    if (a != '1' && a != '2' && a!='3')
-    {
-        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou/Incorrect input please try again but hungarian" << endl; //incorrect input for the language choice
-        languagechoice();
-    }
-}
-void read_language(char a, int &language) //read the story and the questions
+void read_language(char a, int& language) //read the story and the questions
 {
     if (a == '1')
     {
@@ -175,6 +190,31 @@ void read_language(char a, int &language) //read the story and the questions
         language = 3;
     }
 }
+void readenemies()
+{
+    enemies(iron_golem);
+    enemies(zombie);
+    enemies(skeleton);
+    enemies(creeper);
+    enemies(husk);
+}
+void readitems()
+{
+    items(iron_ingot);
+    items(rotten_flesh);
+    items(bone);
+    items(gunpowder);
+}
+void languagechoice()
+{
+    cout << "Choose a language.\nAlege limba.\nChoose a language but hungarian.\n\n\n1)English/Engleza/\n2)Romana/Romanian/\n3)Magyar/Maghiara/Hungarian\n";
+    ico(); //read language option
+    if (a != '1' && a != '2' && a!='3')
+    {
+        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou/Incorrect input please try again but hungarian" << endl; //incorrect input for the language choice
+        languagechoice();
+    }
+}
 void ico() //input one character and clear console
 {
     a = _getch(); //read one character user input
@@ -209,31 +249,6 @@ void name()
         name();
     }
 }
-void items()
-{
-    switch (language)
-    {
-    case 1:
-        iron.item_name = "Iron";
-        rotten_flesh.item_name = "Rotten Flesh";
-        bone.item_name = "Bone";
-        gunpowder.item_name = "Gunpowder";
-    case 2:
-        iron.item_name = "Fier";
-        rotten_flesh.item_name = "Carne Putrezita";
-        bone.item_name = "Os";
-        gunpowder.item_name = "Praf de pusca";
-    case 3:
-        iron.item_name = "Iron but hungarian";
-        rotten_flesh.item_name = "Rotten Flesh but hungarian";
-        bone.item_name = "Bone but hungarian";
-        gunpowder.item_name = "Gunpowder but hungarian";
-    }
-    iron.price = 20;
-    rotten_flesh.price = 10;
-    bone.price = 5;
-    gunpowder.price = 5;
-}
 void playercurrentstate(player &x)
 {
 
@@ -245,5 +260,5 @@ int main()
     read_language(a, language); //read the file containing the corresponding story
     name(); //ask for the name of the character
     readenemies();
-    items();
+    readitems();
 }
