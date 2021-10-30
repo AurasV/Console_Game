@@ -1,14 +1,16 @@
 ATK
 DEF
 SPD
-HLP
+CHP
+THP
 MPP
 MDF
 MAK
 attack
 defense
 speed
-health points
+current health points
+total health points
 mana points
 magic defense
 magic attack

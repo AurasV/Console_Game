@@ -1,7 +1,7 @@
 Iron Golem
 Iron_Ingot
 Lingou_de_Fier
-Vasrúd
+Vasrud
 7
 2
 0.25
@@ -13,7 +13,7 @@ Vasrúd
 Zombie
 Rotten_Flesh
 Carne_Putrezita
-Rohadt_Hús
+Rohadt_Hus
 2.5
 2
 1
@@ -49,7 +49,7 @@ Puskapor
 Husk
 Rotten_flesh
 Carne_Putrezita
-Rohadt_Hús
+Rohadt_Hus
 2.5
 2
 1

@@ -1,10 +1,10 @@
 Iron_Ingot
 Lingou_de_Fier
-Vasrúd
+Vasrud
 20
 Rotten_Flesh
 Carne_Putrezita
-Rohadt_Hús
+Rohadt_Hus
 10
 Bone
 Os
