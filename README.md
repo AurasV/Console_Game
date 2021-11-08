@@ -1,7 +1,7 @@
 # Console_Game
-console game attempt
-Just a small attempt at a text game using the console
-MINIMUM REQUIREMENTS:
+
+
+**MINIMUM REQUIREMENTS:**
 ***Visual C++ Redistributable 2015-2019
 CPU: AMD Athlon 64 X2 4000+
 CPU Speed: 2.10 GHz
