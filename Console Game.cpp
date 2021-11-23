@@ -34,6 +34,8 @@ struct player //player
 {
     string player_name; //player name
     float ATK, DEF, SPD, THP, CHP, MPP, MDF, MAK; //player number stats
+    float xp = { 0 }; //current xp
+    float level = { 1 }; //current level
 };
 struct weapon
 {
@@ -60,11 +62,12 @@ struct item //items
 }; 
 armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb; //armors
 weapon wooden_sword, stone_sword, iron_sword, diamond_sword, netherite_sword, bow, crossbow, trident; //weapons
-enemy iron_golem, zombie, skeleton, creeper, husk; //enemies
+enemy iron_golem, zombie, skeleton, creeper, husk, current_enemy; //enemies
 item iron_ingot, rotten_flesh, bone, gunpowder; //items
 player pc; //player
 void read_language(char a, int& language); //read the story and the questions
 void playercurrentstate(player& x); //output current player state
+void fight_start(enemy& enemy); //fight function
 void ico(); //input one character then clear console
 void weapons(weapon& x); //read weapons from file
 void enemy_stats(enemy& x); //output enemy_stats
@@ -136,6 +139,20 @@ void read_language(char a, int& language) //read the story and the questions
         language = 3;
     }
 }
+void fight_start(enemy& current_enemy)
+{
+    int r = (rand() % 100) + 1;
+    if (r <= 32)
+        current_enemy = zombie;
+    if (r > 32 && r <= 64)
+        current_enemy = skeleton;
+    if (r > 64 && r <= 96)
+        current_enemy = husk;
+    if (r > 96 && r <= 98)
+        current_enemy = creeper;
+    if (r > 98 && r <= 100)
+        current_enemy = iron_golem;
+}
 void playercurrentstate(player& x) //output current player state
 {
     system("CLS");
@@ -143,14 +160,14 @@ void playercurrentstate(player& x) //output current player state
     if (language == 1)
     {
         if (pc.player_name[p] == 's') //if the language is english
-            cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP; //if the last letter is s
+            cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nExperience: "; //if the last letter is s
         else
-            cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP; //if the last letter isn't s
+            cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nExperience: "; //if the last letter isn't s
     }
     if (language == 2)
-        cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP; //if the language is romanian
+        cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nExperienta: "; //if the language is romanian
     if (language == 3)
-        cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nHungarian translation needed"; //if the language is hungarian
+        cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nLevel: " << pc.level << "\nExperience" << "\nHungarian translation needed"; //if the language is hungarian
 }
 void enemy_stats(enemy& x) //output enemy_stats
 {
@@ -427,6 +444,8 @@ int main()
     readweapons(); //read all weapons
     readarmors(); //read all armors
     readitems(); //read all items
-    tests(); //tests function
+    //tests(); //tests function
+    //fight_start(current_enemy); //enemy fight starts
+
     return 0;
 }
