@@ -24,8 +24,8 @@ ifstream fighthungarian("fighthungarian.txt"); //hungarian version for fights
 ifstream fightromanian("fightromanian.txt"); //romanian version for fights
 ifstream fightenglish("fightenglish.txt"); //english version for fights
 ifstream hungarianstory("hungarian.txt"); //hungarian version of the story
-ifstream romanianstory("romana.txt"); //romanian version of the story
-ifstream englishstory("engleza.txt"); //english version of the story
+ifstream romanianstory("romanaian.txt"); //romanian version of the story
+ifstream englishstory("english.txt"); //english version of the story
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
@@ -476,7 +476,7 @@ void tests()
 }
 int main()
 {
-    SetConsoleTitleA("Console Game");
+    SetConsoleTitleA("Recover");
     srand((int)time(0)); //for randomness
     languagechoice(); //language choice 
     read_language(a, language); //read the story and the questions

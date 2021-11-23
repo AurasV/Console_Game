@@ -1,5 +1,11 @@
 Ai fost atacat de:
 Alege ce vrei sa faci:
-1)Ataca
-2)Foloseste un item
-3)Incearca sa fugi
+1) Ataca
+2) Foloseste un item
+3) Incearca sa fugi
+Ai dat
+damage.
+Ai pierdut batalia.
+Ai castigat! Felicitari!
+Ai primit
+xp si
