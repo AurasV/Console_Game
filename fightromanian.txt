@@ -1,0 +1,5 @@
+Ai fost atacat de:
+Alege ce vrei sa faci:
+1)Ataca
+2)Foloseste un item
+3)Incearca sa fugi

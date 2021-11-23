@@ -1,0 +1,5 @@
+You've been attacked by:
+Choose what you want to do:
+1)Attack
+2)Use an item
+3)Try to run
