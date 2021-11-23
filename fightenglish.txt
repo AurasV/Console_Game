@@ -1,4 +1,5 @@
 You've been attacked by:
+You're currently fighting: 
 Choose what you want to do:
 1) Attack
 2) Use an item

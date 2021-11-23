@@ -17,6 +17,11 @@ if (f.is_open())
         }
 int r = (rand() % max_number) + 1; //randomness
 */
+/*TO DO
+Change the fight romanian text file to include the 2nd line
+finish the fight function
+implement shop
+*/
 ifstream questionshungarian("questionshungarian.txt"); //file containing questions hungarian
 ifstream questionsromanian("questionsromanian.txt"); //file containing questions romanian
 ifstream questionsenglish("questionsenglish.txt"); //file containing questions english
@@ -32,7 +37,7 @@ ofstream save3("save3.txt"); //save file three
 string b, first_name, last_name, c, story[10000], questions[10000], d, ar, fight[1000];
 int i, language, j, k, r, enemy_number, e, item_number, p, weapon_number, armor_number;
 char a;
-bool ok_name = false;
+bool ok_name = false, ok_fight_first = true;
 struct player //player
 {
     string player_name; //player name
@@ -237,7 +242,9 @@ void readfight()
 }
 void fight_action(enemy& current_enemy)
 {
-
+    if (ok_fight_first == true)
+        cout << fight[1] << " " << current_enemy.enemy_name; //you've been attacked by on the first run
+    else cout << fight[2] << " " << current_enemy.enemy_name; //you're currently fighting on the subsequent ones
 }
 void fight_start(enemy& current_enemy)
 {
@@ -481,10 +488,12 @@ int main()
     languagechoice(); //language choice 
     read_language(a, language); //read the story and the questions
     name(); //get the name of the character
+    cout << "Loading...";
     readenemies(); //read all enemies
     readweapons(); //read all weapons
     readarmors(); //read all armors
     readitems(); //read all items
+    system("CLS");
     //tests(); //tests function
     //fight_start(current_enemy); //enemy fight starts
     fight_action(current_enemy);
