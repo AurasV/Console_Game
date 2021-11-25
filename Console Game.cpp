@@ -29,7 +29,7 @@ ifstream fighthungarian("fighthungarian.txt"); //hungarian version for fights
 ifstream fightromanian("fightromanian.txt"); //romanian version for fights
 ifstream fightenglish("fightenglish.txt"); //english version for fights
 ifstream hungarianstory("hungarian.txt"); //hungarian version of the story
-ifstream romanianstory("romanaian.txt"); //romanian version of the story
+ifstream romanianstory("romanian.txt"); //romanian version of the story
 ifstream englishstory("english.txt"); //english version of the story
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
@@ -40,34 +40,34 @@ char a;
 bool ok_name = false, ok_fight_first = true;
 struct player //player
 {
-    string player_name; //player name
-    float ATK, DEF, SPD, THP, CHP, MPP, MDF, MAK; //player number stats
+    string player_name = { " " }; //player name
+    float ATK = { 0 }, DEF = { 0 }, THP = { 0 }, CHP = { 0 }; //player number stats
     int current_xp = { 0 }; //current xp
     int level = { 1 }; //current level
     int xp_to_next_level = {100};
 };
 struct weapon
 {
-    string name; //name
-    float ATK; //atk bonus
-    string hand; //main / off hand
+    string name = { " " }; //name
+    float ATK = { 0 }; //atk bonus
+    string hand = { " " }; //main / off hand
 };
 struct enemy //enemies
 {
-    string enemy_name; //enemy name
-    float ATK, DEF, SPD, THP, CHP, MPP, MDF, MAK; //enemy number stats
-    string drops; //enemy dropped item
+    string enemy_name = { " " }; //enemy name
+    float ATK = { 0 }, DEF = { 0 }, THP = { 0 }, CHP = { 0 }; //enemy number stats
+    string drops = { " " }; //enemy dropped item
 };
 struct armor //armors
 {
-    string name; //name
-    float DEF; //def bonus
-    string place; //equip place
+    string name = { " " }; //name
+    float DEF = { 0 }; //def bonus
+    string place = { " " }; //equip place
 };
 struct item //items
 {
-    string name; //item name  //type of bonus from the item
-    int price; //price of the item at a store
+    string name = { " " }; //item name  //type of bonus from the item
+    int price = { 0 }; //price of the item at a store
 }; 
 armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb; //armors
 weapon wooden_sword, stone_sword, iron_sword, diamond_sword, netherite_sword, bow, crossbow, trident; //weapons
@@ -343,8 +343,8 @@ void enemies(enemy& x) //read enemy from file
         getline(h, d);
         x.drops = d;
     }
-    h >> x.ATK >> x.DEF >> x.SPD >> x.THP >> x.CHP >> x.MPP >> x.MDF >> x.MAK; //reading the number stats from file
-    enemy_number = enemy_number + 12;
+    h >> x.ATK >> x.DEF >> x.THP >> x.CHP; //reading the number stats from file
+    enemy_number = enemy_number + 8;
     h.close();
 }
 void armors(armor& x)
@@ -450,7 +450,7 @@ void tests()
     cout << bone.name << endl << bone.price << endl;
     cout << rotten_flesh.name << endl << rotten_flesh.price << endl;
     cout << gunpowder.name << endl << gunpowder.price << endl;
-    cout << endl << "Weapons: ";
+    cout << endl << "Weapons: " << endl;
     cout << wooden_sword.name << endl << wooden_sword.ATK << endl << wooden_sword.hand << endl;
     cout << stone_sword.name << endl << stone_sword.ATK << endl << stone_sword.hand << endl;
     cout << iron_sword.name << endl << iron_sword.ATK << endl << iron_sword.hand << endl;
@@ -480,10 +480,16 @@ void tests()
     cout << netheritec.name << endl << netheritec.DEF << endl << netheritec.place << endl;
     cout << netheritep.name << endl << netheritep.DEF << endl << netheritep.place << endl;
     cout << netheriteb.name << endl << netheriteb.DEF << endl << netheriteb.place << endl;
+    cout << endl << "Enemies:" << endl;
+    enemy_stats(skeleton);
+    enemy_stats(husk);
+    enemy_stats(zombie);
+    enemy_stats(iron_golem);
+    enemy_stats(creeper);
 }
 int main()
 {
-    SetConsoleTitleA("Recover");
+    SetConsoleTitleA("Recover your strength");
     srand((int)time(0)); //for randomness
     languagechoice(); //language choice 
     read_language(a, language); //read the story and the questions
@@ -494,8 +500,8 @@ int main()
     readarmors(); //read all armors
     readitems(); //read all items
     system("CLS");
-    //tests(); //tests function
+    tests(); //tests function
     //fight_start(current_enemy); //enemy fight starts
-    fight_action(current_enemy);
+    
     return 0;
 }
