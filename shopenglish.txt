@@ -1,0 +1,68 @@
+Welcome to Veronika's shop! 
+I'm the owner, Veronika.
+What can I help you with? 
+1) Buy 
+2) Sell 
+3) Exit 
+What do you want to buy? 
+1) Armors 
+2) Weapons 
+3) Health Potions 
+4) Go Back 
+What type of armor do you want to buy? 
+1) Leather +1 DEF for each piece 
+2) Gold +2 DEF for each piece 
+3) Iron +3 DEF for each piece 
+4) Diamond +4 DEF for each piece 
+5) Netherite +5 DEF for each piece 
+6) Go Back 
+Choose what leather armor to buy:
+1) Head +1 DEF
+2) Chest +1 DEF
+3) Pants +1 DEF
+4) Boots +1 DEF
+5) Go Back 
+Choose what gold armor to buy:
+1) Head +2 DEF
+2) Chest +2 DEF
+3) Pants +2 DEF
+4) Boots +2 DEF
+5) Go Back 
+Choose what iron armor to buy:
+1) Head +3 DEF
+2) Chest +3 DEF
+3) Pants +3 DEF
+4) Boots +3 DEF
+5) Go Back 
+Choose what diamond armor to buy:
+1) Head +4 DEF
+2) Chest +4 DEF
+3) Pants +4 DEF
+4) Boots +4 DEF
+5) Go Back 
+Choose what netherite armor to buy:
+1) Head +5 DEF
+2) Chest +5 DEF
+3) Pants +5 DEF
+4) Boots +5 DEF
+5) Go Back 
+What type of weapon would you like to buy?
+1) Main Hand 
+2) Off Hand 
+3) Go Back 
+Choose a main hand weapon to buy:
+1) Wooden Sword +1 ATK 
+2) Stone Sword +2 ATK 
+3) Iron Sword +3 ATK 
+4) Diamond Sword +4 ATK 
+5) Netheire Sword +5 ATK 
+6) Go Back 
+Choose an off hand weapon to buy:
+1) Bow +3 ATK 
+2) Crossbow +4 ATK 
+3) Trident +5 ATK 
+4) Go Back
+What type of potion would you like to buy?
+1) Normal Health Potion (Regenerates 10HP)
+2) Greater Health Potion (Regenerates 20HP)
+3) Ultimate Health Potion (Regenerates 30HP)

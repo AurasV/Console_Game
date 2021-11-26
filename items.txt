@@ -14,3 +14,6 @@ Gunpowder
 Praf_de_Pusca
 Puskapor
 5
+Health_Potion
+Potiune_de_Viata
+Health_Potion but hungarian

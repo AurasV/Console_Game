@@ -18,9 +18,10 @@ if (f.is_open())
 int r = (rand() % max_number) + 1; //randomness
 */
 /*TO DO
-Change the fight romanian text file to include the 2nd line
 finish the fight function
-implement shop
+implement shop //text already made for english version
+translations in hungarian for fights, shop and new items 
+romanian translation for shop
 */
 ifstream questionshungarian("questionshungarian.txt"); //file containing questions hungarian
 ifstream questionsromanian("questionsromanian.txt"); //file containing questions romanian
