@@ -21,7 +21,6 @@ int r = (rand() % max_number) + 1; //randomness
 finish the fight function
 implement shop //text already made for english version
 translations in hungarian for fights, shop and new items 
-romanian translation for shop
 */
 ifstream questionshungarian("questionshungarian.txt"); //file containing questions hungarian
 ifstream questionsromanian("questionsromanian.txt"); //file containing questions romanian
@@ -32,6 +31,9 @@ ifstream fightenglish("fightenglish.txt"); //english version for fights
 ifstream hungarianstory("hungarian.txt"); //hungarian version of the story
 ifstream romanianstory("romanian.txt"); //romanian version of the story
 ifstream englishstory("english.txt"); //english version of the story
+ifstream shopenglish("shopenglish.txt"); //english version of the shop
+ifstream shopromanian("shopromanian.txt"); //romanian version of the shop
+ifstream shophungarian("shophungarian.txt"); //hungarian version of the shop
 ofstream save1("save1.txt"); //save file one
 ofstream save2("save2.txt"); //save file two
 ofstream save3("save3.txt"); //save file three
@@ -100,7 +102,7 @@ void languagechoice() //language choice
     ico(); //read language option
     if (a != '1' && a != '2' && a != '3')
     {
-        cout << "Incorrect input please try again/Intrare incorecta te rog incearca din nou/Incorrect input please try again but hungarian" << endl; //incorrect input for the language choice
+        cout << "Incorrect input, please try again/Intrare incorecta, te rog incearca din nou/Incorrect input, please try again but hungarian" << endl; //incorrect input for the language choice
         languagechoice();
     }
 }
@@ -241,6 +243,37 @@ void readfight()
             }
         }
 }
+/*void readshop()
+{
+    i = 1;
+    if (language == 1)
+        if (fightenglish.is_open()) //check if file is open
+        {
+            while (getline(fightenglish, b)) //read line and store in b
+            {
+                fight[i] = b; //add the line to the fight string
+                i++; //increase the number for the line of the fight string
+            }
+        }
+    if (language == 2)
+        if (fightromanian.is_open()) //check if file is open
+        {
+            while (getline(fightromanian, b)) //read line and store in b
+            {
+                fight[i] = b; //add the line to the fight string
+                i++; //increase the number for the line of the fight string
+            }
+        }
+    if (language == 3)
+        if (fighthungarian.is_open()) //check if file is open
+        {
+            while (getline(fighthungarian, b)) //read line and store in b
+            {
+                fight[i] = b; //add the line to the fight string
+                i++; //increase the number for the line of the fight string
+            }
+        }
+}*/
 void fight_action(enemy& current_enemy)
 {
     if (ok_fight_first == true)
