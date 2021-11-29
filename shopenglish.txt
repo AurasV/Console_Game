@@ -63,9 +63,9 @@ Choose an off-hand weapon to buy:
 3) Trident +5 ATK 
 4) Go Back 
 What type of potion would you like to buy? 
-1) Normal Health Potion (Regenerates 10HP) 
-2) Greater Health Potion (Regenerates 20HP) 
-3) Ultimate Health Potion (Regenerates 30HP) 
+1) Normal Health Potion - Regenerates 10HP 
+2) Greater Health Potion - Regenerates 20HP 
+3) Ultimate Health Potion - Regenerates 30HP 
 4) Go Back 
 What would you like to sell? 
 1) Bone 

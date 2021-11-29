@@ -63,11 +63,11 @@ Alege ce arma pentru mana secundara cumperi:
 3) Trident +5 ATK 
 4) Inapoi 
 Ce fel de potiune de viata cumperi? 
-1) Potiune de Viata Normala (Regenerates 10HP) 
-2) Potiune de Viata Superioara (Regenerates 20HP) 
-3) Potiune de Viata Suprema (Regenerates 30HP) 
+1) Potiune de Viata Normala - Regenerates 10HP 
+2) Potiune de Viata Superioara - Regenerates 20HP 
+3) Potiune de Viata Suprema - Regenerates 30HP 
 4) Inapoi 
 Nu ai 
 ! 
-Nu ai destul G pentru a cumpara 
+Nu ai destul aur pentru a cumpara 
 Intrare incorecta, te rog incearca din nou.

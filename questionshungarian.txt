@@ -1,4 +1,4 @@
-Your name is:
-is this name correct?
-1) Yes
-2) No but hungarian
+Nev:
+ez a nev helyes? 
+1) Igen 
+2) Nem 
