@@ -1,15 +1,15 @@
 Iron Golem
-Iron_Ingot
-Lingou_de_Fier
+Iron Ingot
+Lingou de Fier
 Vasrud
 7
 2
 100
 100
 Zombie
-Rotten_Flesh
-Carne_Putrezita
-Rohadt_Hus
+Rotten Flesh
+Carne Putrezita
+Rohadt Hus
 2.5
 2
 20
@@ -24,16 +24,16 @@ Csont
 20
 Creeper
 Gunpowder
-Praf_de_Pusca
+Praf de Pusca
 Puskapor
 22.5
 2
 20
 20
 Husk
-Rotten_flesh
-Carne_Putrezita
-Rohadt_Hus
+Rotten flesh
+Carne Putrezita
+Rohadt Hus
 2.5
 2
 20

@@ -1,100 +1,100 @@
-Leather_Cap
-Casca_de_Piele
+Leather Cap
+Casca de Piele
 Borsisak
 head
 1
-Leather_Tunic
-Tunica_de_Piele
+Leather Tunic
+Tunica de Piele
 Borzubbony
 chest
 1
-Leather_Pants
-Pantaloni_de_Piele
+Leather Pants
+Pantaloni de Piele
 Bornadrag
 pants
 1
-Leather_Boots
-Cizme_de_Piele
+Leather Boots
+Cizme de Piele
 Borocsizma
 boots
 1
-Golden_Helmet
-Casca_de_Aur
+Golden Helmet
+Casca de Aur
 Aranysisak
 head
 2
-Golden_Chestplate
-Platosa_de_Aur
-Arany_Mellvert
+Golden Chestplate
+Platosa de Aur
+Arany Mellvert
 chest
 2
-Golden_Leggings
-Jambiere_de_Aur
-Arany_Labszarvedo
+Golden Leggings
+Jambiere de Aur
+Arany Labszarvedo
 pants
 2
-Golden_Boots
-Cizme_de_Aur
+Golden Boots
+Cizme de Aur
 Aranycsizma
 boots
 2
-Iron_Helmet
-Casca_de_Fier
+Iron Helmet
+Casca de Fier
 Vassisak
 head
 3
-Iron_Chestplate
-Platosa_de_Fier
-Vas_Mellvert
+Iron Chestplate
+Platosa de Fier
+Vas Mellvert
 chest
 3
-Iron_Leggings
-Jambiere_de_Fier
-Vas_Labszarvedo
+Iron Leggings
+Jambiere de Fier
+Vas Labszarvedo
 pants
 3
-Iron_boots
-Cizme_de_Fier
+Iron boots
+Cizme de Fier
 Vascsizma
 boots
 3
-Diamond_Helmet
-Casca_de_Diamant
+Diamond Helmet
+Casca de Diamant
 Gyemantsisak
 head
 4
-Diamond_Chestplate
-Platosa_de_Diamant
-Gyemant_Mellvert
+Diamond Chestplate
+Platosa de Diamant
+Gyemant Mellvert
 chest
 4
-Diamond_Leggings
-Jambiere_de_Diamant
-Gyemant_Labszarvedo
+Diamond Leggings
+Jambiere de Diamant
+Gyemant Labszarvedo
 pants
 4
-Diamond_Boots
-Cizme_de_Diamant
+Diamond Boots
+Cizme de Diamant
 Gyemantcsizma
 boots
 4
-Netherite_Helmet
-Casca_de_Netherit
+Netherite Helmet
+Casca de Netherit
 Netheritsisak
 head
 5
-Netherite_Chestplate
-Platosa_de_Netherit
-Netherit_Mellvert
+Netherite Chestplate
+Platosa de Netherit
+Netherit Mellvert
 chest
 5
-Netherite_Leggings
-Jambiere_de_Netherit
-Netherit_Labszarvedo
+Netherite Leggings
+Jambiere de Netherit
+Netherit Labszarvedo
 pants
 5
-Netherite_Boots
-Cizme_de_Netherit
+Netherite Boots
+Cizme de Netherit
 Netheritcsizma
 boots
 5

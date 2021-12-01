@@ -67,6 +67,12 @@ Ce fel de potiune de viata cumperi?
 2) Potiune de Viata Superioara - Regenerates 20HP 
 3) Potiune de Viata Suprema - Regenerates 30HP 
 4) Inapoi 
+Ce vrei sa vinzi? 
+1) Os 
+2) Carne Putrezita 
+3) Lingou de Fier 
+4) Praf de Pusca 
+5) Inapoi 
 Nu ai 
 ! 
 Nu ai destul aur pentru a cumpara 

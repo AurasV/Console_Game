@@ -1,25 +1,25 @@
-Wodden_Sword
-Sabie_de_Lemn
+Wodden Sword
+Sabie de Lemn
 Fakard
 main
 1
-Stone_Sword
-Sabie_de_Piatra
+Stone Sword
+Sabie de Piatra
 Kokard
 main
 2
-Iron_Sword
-Sabie_de_Fier
+Iron Sword
+Sabie de Fier
 Aranykard
 main
 3
-Diamond_Sword
-Sabie_de_Diamant
+Diamond Sword
+Sabie de Diamant
 Gyemantkard
 main
 4
-Netherite_Sword
-Sabie_de_Netherit
+Netherite Sword
+Sabie de Netherit
 Netherikard
 main
 5

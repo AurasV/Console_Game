@@ -1,28 +1,28 @@
-Iron_Ingot 
-Lingou_de_Fier 
+Iron Ingot 
+Lingou de Fier 
 Vasrud 
 20 
-Rotten_Flesh 
-Carne_Putrezita 
-Rohadt_Hus 
+Rotten Flesh 
+Carne Putrezita 
+Rohadt Hus 
 10 
 Bone 
 Os 
 Csont 
 5 
 Gunpowder 
-Praf_de_Pusca 
+Praf de Pusca 
 Puskapor 
 5 
-Normal_Health_Potion 
-Potiune_de_Viata_Normala 
+Normal Health Potion 
+Potiune de Viata Normala 
 Normal gyogyelixir. 
 5 
-Greater_Health_Potion 
-Potiune_de_Viata_Superioara 
-Remek_gyogyelixir. 
+Greater Health Potion 
+Potiune de Viata Superioara 
+Remek gyogyelixir. 
 10 
-Supreme_Health_Potion 
-Potiune_de_Viata_Suprema 
-Rendkivuli_elixir. 
+Supreme Health Potion 
+Potiune de Viata Suprema 
+Rendkivuli elixir. 
 20 
