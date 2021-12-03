@@ -3,76 +3,76 @@ Az en nevem Veronika, a te eladod es egyben Uzlet tulaj.
 Miben segithetek? 
 1) Venni 
 2) Eladni 
-3) Kilepes 
+0) Kilepes 
 Mit szeretnel vasarolni? 
 1) Pancelokat 
 2) Fegyvereket 
 3) Gyogyelixir 
-4) Vissza 
+0) Vissza 
 Milyen tipusu pancelt szeretnel venni? 
 1) Bor + 1 vedekezes minden darabjaert 
 2) Arany + 2 vedekezes minden darabjaert 
 3) Vas + 3 vedekezes minden darabjaert 
 4) Gyemant + 4 vedekezes minden darabjaert 
 5) Netherita + 5 vedekezes minden darabjaert 
-6) Vissza
+0) Vissza
 Valassz bor pancelt: 
 1) Sisak +1 vedekezes 
 2) Pancel +1 vedekezes 
 3) Nadrag +1 vedekezes 
 4) Csizma +1 vedekezes 
-5) Vissza 
+0) Vissza 
 Valassz arany pancelt: 
 1) Sisak +2 vedekezes 
 2) Pancel +2 vedekezes 
 3) Nadrag +2 vedekezes 
 4) Csizma +2 vedekezes 
-5) Vissza 
+0) Vissza 
 Valassz vas pancelt: 
 1) Sisak +3 vedekezes 
 2) Pancel +3 vedekezes 
 3) Nadrag +3 vedekezes 
 4) Csizma +3 vedekezes 
-5) Vissza 
+0) Vissza 
 Valassz gyemant pancelt: 
 1) Sisak +4 vedekezes 
 2) Pancel +4 vedekezes 
 3) Nadrag +4 vedekezes 
 4) Csizma +4 vedekezes 
-5) Vissza 
+0) Vissza 
 Valassz netherita pancelt:
 1) Sisak +5 vedekezes 
 2) Pancel +5 vedekezes 
 3) Nadrag +5 vedekezes 
 4) Csizma +5 vedekezes 
-5) Vissza 
+0) Vissza 
 Milyen tipusu fegyvert szeretnel? 
 1) Fo fegyver 
 2) Masodlagos fegyver 
-3) Vissza 
+0) Vissza 
 Valassz fo fegyvert: 
 1) Fa kard +1 tamadas 
 2) Ko kard +2 tamadas 
 3) Vas kard +3 tamadas 
 4) Gyemant kard +4 tamadas 
 5) Netherita kard +5 tamadas 
-6) Vissza 
+0) Vissza 
 Valasz masodlagos fegyvert: 
 1) Ij +3 tamadas
 2) Szamszerij +4 tamadas
 3) Szigony +5 tamadas
-4) Vissza 
+0) Vissza 
 What type of potion would you like to buy? Milyen tipusu bajitalt szeretnel? 
 1) Normal gyogyelixir - 10Hp-t regeneral vissza 
 2) Remek gyogyelixir - 20Hp-t regeneral vissza 
 3) Rendkivuli elixir - 30Hp-t regeneral vissza 
-4) Vissza 
+0) Vissza 
 Mit szeretnel eladni
 1) Csont 
 2) Rohdat Hus
 3) Vasrud
 4) Puskapor
-5) Vissza
+0) Vissza
 Nem rendelkezzel ezzel az eszkozzel 
 !
 Nincs elegendo aranyad ahiz hogy ezt megvedd 

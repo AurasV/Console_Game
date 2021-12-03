@@ -47,10 +47,11 @@ bool ok_name = false, ok_fight_first = true, ok_access_shop = false;
 struct player //player
 {
     std::string player_name = { " " }; //player name
-    float ATK = { 0 }, DEF = { 0 }, THP = { 0 }, CHP = { 0 }; //player number stats
+    float ATK = { 5 }, DEF = { 5 }, THP = { 20 }, CHP = { 20 }; //player number stats
     int current_xp = { 0 }; //current xp
     int level = { 1 }; //current level
-    int xp_to_next_level = {100};
+    int xp_to_next_level = { 100 };
+    int current_gold = { 0 };
 };
 struct weapon
 {
@@ -75,11 +76,23 @@ struct item //items
     std::string name = { " " }; //item name  //type of bonus from the item
     int price = { 0 }; //price of the item at a store
 }; 
+struct equipment
+{
+    std::string head = { "nothing" }; //head equipment name
+    std::string chest = { "nothing" }; //chest equipment name
+    std::string pants = { "nothing" }; //pants equipment name
+    std::string boots = { "nothing" }; //boots equipment name
+    int h_def = { 0 }; //head def
+    int c_def = { 0 }; //chest def
+    int p_def = { 0 }; //pants def
+    int b_def = { 0 }; //boots def
+};
 armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb; //armors
 weapon wooden_sword, stone_sword, iron_sword, diamond_sword, netherite_sword, bow, crossbow, trident; //weapons
 enemy iron_golem, zombie, skeleton, creeper, husk, current_enemy; //enemies
 item iron_ingot, rotten_flesh, bone, gunpowder, normal_hp, greater_hp, supreme_hp; //items
 player pc; //player
+equipment equip; //currently equipped stuff
 void languagechoice(); //language choice
 void read_language(char a, int& language); //read the story and the questions
 void readfight(); //read all fight needed text
@@ -105,6 +118,11 @@ void shop_sell();
 void buy_armor();
 void buy_weapon();
 void buy_health_potion();
+void buy_leather();
+void buy_gold();
+void buy_iron();
+void buy_diamond();
+void buy_netherite();
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -303,8 +321,9 @@ void access_shop()
     case '2':
         shop_sell(); //if answer is sell
         break;
-    case '3':
+    case '0':
         //return to main menu function goes here
+        std::cout << "\n";
         break;
     default:
         std::cout << shop[79] << "\n"; //if wrong input
@@ -328,13 +347,13 @@ void shop_buy()
     case '3':
         buy_health_potion();
         break;
-    case '4':
+    case '0':
         access_shop();
         break;
     default:
-        std::cout << "answer is something else";
+        std::cout << shop[79] << "\n"; //if wrong input
+        shop_buy();
     }
-
 
 }
 void shop_sell()
@@ -343,7 +362,172 @@ void shop_sell()
 }
 void buy_armor()
 {
-
+    for (int shop_counter = 12; shop_counter <= 18; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        buy_leather();
+        break;
+    case '2':
+        buy_gold();
+        break;
+    case '3':
+        buy_iron();
+        break;
+    case '4':
+        buy_diamond();
+        break;
+    case '5':
+        buy_netherite();
+        break;
+    case '0':
+        shop_buy();
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_armor();
+    }
+}
+void buy_leather()
+{
+    for (int shop_counter = 19; shop_counter <= 24; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '2':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '3':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '4':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '0':
+        buy_armor();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_leather();
+        break;
+    }
+}
+void buy_gold()
+{
+    for (int shop_counter = 25; shop_counter <= 30; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '2':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '3':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '4':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '0':
+        buy_armor();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_gold();
+        break;
+    }
+}
+void buy_iron()
+{
+    for (int shop_counter = 31; shop_counter <= 36; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '2':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '3':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '4':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '0':
+        buy_armor();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_iron();
+        break;
+    }
+}
+void buy_diamond()
+{
+    for (int shop_counter = 37; shop_counter <= 42; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '2':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '3':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '4':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '0':
+        buy_armor();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_diamond();
+        break;
+    }
+}
+void buy_netherite()
+{
+    for (int shop_counter = 43; shop_counter <= 48; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '2':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '3':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '4':
+        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        break;
+    case '0':
+        buy_armor();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_netherite();
+        break;
+    }
 }
 void buy_weapon()
 {
@@ -375,21 +559,21 @@ void fight_enemy_generate(enemy& current_enemy)
 }
 void playercurrentstate(player& x) //output current player state
 {
-    system("CLS");
+    //system("CLS");
     p = pc.player_name.length() - 1;
     switch (language)
     {
     case 1:
         if (pc.player_name[p] == 's') //if the language is english
-            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nXP: "; //if the last letter is s
+            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter is s
         else
-            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nXP: "; //if the last letter isn't s
+            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter isn't s
         break;
     case 2:
-        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nXP: "; //if the language is romanian
+        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp;; //if the language is romanian
         break;
     case 3:
-        std::cout << "Current stats for  " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nXP: "; //if the language is hungarian
+        std::cout << "Current stats for  " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp; //if the language is hungarian
         break;
     }
 }
@@ -551,10 +735,6 @@ void name() //get the name of the character
         ok_name = true;
         name();
     }
-    pc.ATK = 3;
-    pc.DEF = 3;
-    pc.THP = 20;
-    pc.CHP = 20;
 }
 void ico() //input one character then clear console
 {
@@ -629,8 +809,9 @@ int main()
     readshop(); //read the needed text for shop
     readfight(); //read all fight text
     system("CLS"); //clear console
-    tests(); //tests function
+    //tests(); //tests function
     //fight_enemy_generate(current_enemy); //generate enemy to fight using randomness
     //access_shop();
+    playercurrentstate(pc);
     return 0;
 }

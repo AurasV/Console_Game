@@ -3,76 +3,76 @@ Eu sunt Veronika, Prorietara.
 Cu ce te pot ajuta? 
 1) Cumpara 
 2) Vinde 
-3) Iesi 
+0) Iesi 
 Ce vrei sa cumperi? 
 1) Armuri 
 2) Arme 
 3) Potiuni de Viata 
-4) Inapoi 
+0) Inapoi 
 Ce fel de armura vrei sa cumperi? 
 1) Piele +1 DEF pentru fiecare parte 
 2) Aur +2 DEF pentru fiecare parte 
 3) Fier +3 DEF pentru fiecare parte 
 4) Diamant +4 DEF pentru fiecare parte 
 5) Netherit +5 DEF pentru fiecare parte 
-6) Inapoi 
+0) Inapoi 
 Alege ce armura de piele cumperi: 
 1) Casca +1 DEF 
 2) Tunica +1 DEF 
 3) Pantaloni +1 DEF 
 4) Cizme +1 DEF 
-5) Inapoi 
+0) Inapoi 
 Alege ce armura de aur cumperi: 
 1) Casca +2 DEF 
 2) Platosa +2 DEF 
 3) Jambiere +2 DEF 
 4) Cizme +2 DEF 
-5) Inapoi 
+0) Inapoi 
 Alege ce armura de fier cumperi: 
 1) Casca +3 DEF 
 2) Platosa +3 DEF 
 3) Jambiere +3 DEF 
 4) Cizme +3 DEF 
-5) Inapoi 
+0) Inapoi 
 Alege ce armura de diamant cumperi: 
 1) Casca +4 DEF 
 2) Platosa +4 DEF 
 3) Jambiere +4 DEF 
 4) Cizme +4 DEF 
-5) Inapoi 
+0) Inapoi 
 Alege ce armura de netherit cumperi: 
 1) Casca +5 DEF 
 2) Platosa +5 DEF 
 3) Jambiere +5 DEF 
 4) Cizme +5 DEF 
-5) Inapoi 
+0) Inapoi 
 Ce tip de arma vrei sa cumperi? 
 1) Mana Principala 
 2) Mana Secundara 
-3) Inapoi 
+0) Inapoi 
 Alege ce arma pentru mana principala cumperi: 
 1) Sabie de Lemn +1 ATK 
 2) Sabie de Piatra +2 ATK 
 3) Sabie de Fier +3 ATK 
 4) Sabie de Diamant +4 ATK 
 5) Sabie de Netherit +5 ATK 
-6) Inapoi 
+0) Inapoi 
 Alege ce arma pentru mana secundara cumperi: 
 1) Arc +3 ATK 
 2) Arbaleta +4 ATK 
 3) Trident +5 ATK 
-4) Inapoi 
+0) Inapoi 
 Ce fel de potiune de viata cumperi? 
 1) Potiune de Viata Normala - Regenerates 10HP 
 2) Potiune de Viata Superioara - Regenerates 20HP 
 3) Potiune de Viata Suprema - Regenerates 30HP 
-4) Inapoi 
+0) Inapoi 
 Ce vrei sa vinzi? 
 1) Os 
 2) Carne Putrezita 
 3) Lingou de Fier 
 4) Praf de Pusca 
-5) Inapoi 
+0) Inapoi 
 Nu ai 
 ! 
 Nu ai destul aur pentru a cumpara 
