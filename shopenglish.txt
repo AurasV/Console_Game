@@ -17,34 +17,34 @@ What type of armor do you want to buy?
 5) Netherite +5 DEF for each piece 
 0) Go Back 
 Choose what leather armor to buy: 
-1) Helmet +1 DEF 
-2) Chestplate +1 DEF 
-3) Pants +1 DEF 
-4) Boots +1 DEF 
+1) Helmet +1 DEF -100G
+2) Chestplate +1 DEF -100G
+3) Pants +1 DEF -100G
+4) Boots +1 DEF -100G
 0) Go Back 
 Choose what gold armor to buy: 
-1) Helmet +2 DEF 
-2) Chestplate +2 DEF 
-3) Pants +2 DEF 
-4) Boots +2 DEF 
+1) Helmet +2 DEF -200G
+2) Chestplate +2 DEF -200G
+3) Pants +2 DEF -200G
+4) Boots +2 DEF -200G
 0) Go Back 
 Choose what iron armor to buy: 
-1) Helmet +3 DEF 
-2) Chestplate +3 DEF 
-3) Pants +3 DEF 
-4) Boots +3 DEF 
+1) Helmet +3 DEF -300G
+2) Chestplate +3 DEF -300G
+3) Pants +3 DEF -300G
+4) Boots +3 DEF -300G
 0) Go Back 
 Choose what diamond armor to buy: 
-1) Helmet +4 DEF 
-2) Chestplate +4 DEF 
-3) Pants +4 DEF 
-4) Boots +4 DEF 
+1) Helmet +4 DEF -400G
+2) Chestplate +4 DEF -400G
+3) Pants +4 DEF -400G
+4) Boots +4 DEF -400G
 0) Go Back 
 Choose what netherite armor to buy: 
-1) Helmet +5 DEF 
-2) Chestplate +5 DEF 
-3) Pants +5 DEF 
-4) Boots +5 DEF 
+1) Helmet +5 DEF -500G
+2) Chestplate +5 DEF -500G
+3) Pants +5 DEF -500G
+4) Boots +5 DEF -500G
 0) Go Back 
 What type of weapon would you like to buy? 
 1) Main Hand 

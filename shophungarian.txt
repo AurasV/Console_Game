@@ -17,34 +17,34 @@ Milyen tipusu pancelt szeretnel venni?
 5) Netherita + 5 vedekezes minden darabjaert 
 0) Vissza
 Valassz bor pancelt: 
-1) Sisak +1 vedekezes 
-2) Pancel +1 vedekezes 
-3) Nadrag +1 vedekezes 
-4) Csizma +1 vedekezes 
+1) Sisak +1 vedekezes -100A
+2) Pancel +1 vedekezes -100A
+3) Nadrag +1 vedekezes -100A
+4) Csizma +1 vedekezes -100A
 0) Vissza 
 Valassz arany pancelt: 
-1) Sisak +2 vedekezes 
-2) Pancel +2 vedekezes 
-3) Nadrag +2 vedekezes 
-4) Csizma +2 vedekezes 
+1) Sisak +2 vedekezes -200A
+2) Pancel +2 vedekezes -200A
+3) Nadrag +2 vedekezes -200A
+4) Csizma +2 vedekezes -200A
 0) Vissza 
 Valassz vas pancelt: 
-1) Sisak +3 vedekezes 
-2) Pancel +3 vedekezes 
-3) Nadrag +3 vedekezes 
-4) Csizma +3 vedekezes 
+1) Sisak +3 vedekezes -300A
+2) Pancel +3 vedekezes -300A
+3) Nadrag +3 vedekezes -300A
+4) Csizma +3 vedekezes -300A
 0) Vissza 
 Valassz gyemant pancelt: 
-1) Sisak +4 vedekezes 
-2) Pancel +4 vedekezes 
-3) Nadrag +4 vedekezes 
-4) Csizma +4 vedekezes 
+1) Sisak +4 vedekezes -400A
+2) Pancel +4 vedekezes -400A
+3) Nadrag +4 vedekezes -400A
+4) Csizma +4 vedekezes -400A
 0) Vissza 
 Valassz netherita pancelt:
-1) Sisak +5 vedekezes 
-2) Pancel +5 vedekezes 
-3) Nadrag +5 vedekezes 
-4) Csizma +5 vedekezes 
+1) Sisak +5 vedekezes -500A
+2) Pancel +5 vedekezes -500A
+3) Nadrag +5 vedekezes -500A
+4) Csizma +5 vedekezes -500A
 0) Vissza 
 Milyen tipusu fegyvert szeretnel? 
 1) Fo fegyver 

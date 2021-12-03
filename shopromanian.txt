@@ -17,34 +17,34 @@ Ce fel de armura vrei sa cumperi?
 5) Netherit +5 DEF pentru fiecare parte 
 0) Inapoi 
 Alege ce armura de piele cumperi: 
-1) Casca +1 DEF 
-2) Tunica +1 DEF 
-3) Pantaloni +1 DEF 
-4) Cizme +1 DEF 
+1) Casca +1 DEF -100A
+2) Tunica +1 DEF -100A
+3) Pantaloni +1 DEF -100A
+4) Cizme +1 DEF -100A
 0) Inapoi 
 Alege ce armura de aur cumperi: 
-1) Casca +2 DEF 
-2) Platosa +2 DEF 
-3) Jambiere +2 DEF 
-4) Cizme +2 DEF 
+1) Casca +2 DEF -200A
+2) Platosa +2 DEF -200A
+3) Jambiere +2 DEF -200A
+4) Cizme +2 DEF -200A
 0) Inapoi 
 Alege ce armura de fier cumperi: 
-1) Casca +3 DEF 
-2) Platosa +3 DEF 
-3) Jambiere +3 DEF 
-4) Cizme +3 DEF 
+1) Casca +3 DEF -300A
+2) Platosa +3 DEF -300A
+3) Jambiere +3 DEF -300A
+4) Cizme +3 DEF -300A
 0) Inapoi 
 Alege ce armura de diamant cumperi: 
-1) Casca +4 DEF 
-2) Platosa +4 DEF 
-3) Jambiere +4 DEF 
-4) Cizme +4 DEF 
+1) Casca +4 DEF -400A
+2) Platosa +4 DEF -400A
+3) Jambiere +4 DEF -400A
+4) Cizme +4 DEF -400A
 0) Inapoi 
 Alege ce armura de netherit cumperi: 
-1) Casca +5 DEF 
-2) Platosa +5 DEF 
-3) Jambiere +5 DEF 
-4) Cizme +5 DEF 
+1) Casca +5 DEF -500A
+2) Platosa +5 DEF -500A
+3) Jambiere +5 DEF -500A
+4) Cizme +5 DEF -500A
 0) Inapoi 
 Ce tip de arma vrei sa cumperi? 
 1) Mana Principala 
