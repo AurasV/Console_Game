@@ -123,6 +123,8 @@ void buy_gold();
 void buy_iron();
 void buy_diamond();
 void buy_netherite();
+void buy_main_hand();
+void buy_off_hand();
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -358,7 +360,31 @@ void shop_buy()
 }
 void shop_sell()
 {
-
+    for (int shop_counter = 70; shop_counter <= 75; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //sell bones if they have any
+        break;
+    case '2':
+        //sell rotten flesh if they have any
+        break;
+    case '3':
+        //sell iron ingot if they have any
+        break;
+    case '4':
+        //sell gunpowder if they have any
+        break;
+    case '0':
+        access_shop();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        shop_sell();
+        break;
+    }
 }
 void buy_armor()
 {
@@ -531,6 +557,82 @@ void buy_netherite()
 }
 void buy_weapon()
 {
+    for (int shop_counter = 49; shop_counter <= 52; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        buy_main_hand();
+        break;
+    case '2':
+        buy_off_hand();
+        break;
+    case '0':
+        shop_buy();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_weapon();
+        break;
+    }
+
+}
+void buy_main_hand()
+{
+    for (int shop_counter = 53; shop_counter <= 59; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //buy wooden sword (if you have enough gold and its better than currently equipped one)
+        break;
+    case '2':
+        //buy stone sword (if you have enough gold and its better than currently equipped one)
+        break;
+    case '3':
+        //buy iron sword (if you have enough gold and its better than currently equipped one)
+        break;
+    case '4':
+        //buy diamond sword (if you have enough gold and its better than currently equipped one)
+        break;
+    case '5':
+        //buy netherite sword (if you have enough gold and its better than currently equipped one)
+        break;
+    case '0':
+        buy_weapon();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_main_hand();
+        break;
+    }
+}
+void buy_off_hand()
+{
+    for (int shop_counter = 60; shop_counter <= 64; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //buy bow (if you have enough gold and its better than currently equipped one)
+        break;
+    case '2':
+        //buy crossbow (if you have enough gold and its better than currently equipped one)
+        break;
+    case '3':
+        //buy trident (if you have enough gold and its better than currently equipped one)
+        break;
+    case '0':
+        buy_weapon();
+        break;
+    default:
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_off_hand();
+        break;
+    }
 
 }
 void buy_health_potion()
