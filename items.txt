@@ -13,15 +13,15 @@ Csont
 Gunpowder 
 Praf de Pusca 
 Puskapor 
-5 
+25 
 Normal Health Potion 
 Potiune de Viata Normala 
 Normal gyogyelixir 
-5 
+10 
 Greater Health Potion 
 Potiune de Viata Superioara 
 Remek gyogyelixir 
-10 
+15 
 Supreme Health Potion 
 Potiune de Viata Suprema 
 Rendkivuli elixir 

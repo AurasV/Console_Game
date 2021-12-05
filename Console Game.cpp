@@ -79,17 +79,22 @@ struct item //items
 {
     std::string name = { " " }; //item name  //type of bonus from the item
     int price = { 0 }; //price of the item at a store
+    int number = { 0 }; //number of items inventory currently
 }; 
 struct equipment
 {
-    std::string head = { "nothing" }; //head equipment name
-    std::string chest = { "nothing" }; //chest equipment name
-    std::string pants = { "nothing" }; //pants equipment name
-    std::string boots = { "nothing" }; //boots equipment name
+    std::string head = { "nothing" }; //head name
+    std::string chest = { "nothing" }; //chest name
+    std::string pants = { "nothing" }; //pants name
+    std::string boots = { "nothing" }; //boots name
+    std::string mainweapon = { "fist" }; //main hand weapon name
+    std::string offweapon = { "nothing" }; //off hand weapon name
     int h_def = { 0 }; //head def
     int c_def = { 0 }; //chest def
     int p_def = { 0 }; //pants def
     int b_def = { 0 }; //boots def
+    int mw_atk = { 0 }; //main hand weapon atk
+    int ow_atk = { 0 }; //off hand weapon atk
 };
 armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb; //armors
 weapon wooden_sword, stone_sword, iron_sword, diamond_sword, netherite_sword, bow, crossbow, trident; //weapons
@@ -133,6 +138,8 @@ void readshop(); //shop reading function
 void readfight(); //fight reading function
 void readmenu(); //menu reading function
 void nice_try(); //nice try function
+void save_game(); //save game function
+void load_game(); //load game function
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -361,7 +368,6 @@ void readmenu()
     menuromanian.close(); //close romanian file
     menuhungarian.close(); //close hungarian file
 }
-//have to finish this ^
 void access_shop()
 {
     for (int shop_counter = 1; shop_counter <= 6; shop_counter++)
@@ -418,16 +424,55 @@ void shop_sell()
     switch (a)
     {
     case '1': //if answer is bone
-        //sell bones if they have any
+        if (bone.number > 0)
+        {
+            pc.current_gold = pc.current_gold + 5 * bone.number;
+            system("CLS");
+            std::cout << shop[80] << bone.number << " " << bone.name << "\n" << shop[81];
+            bone.number = 0;
+            ico();
+            shop_sell();
+        }
         break;
     case '2': //if answer is rotten flesh
-        //sell rotten flesh if they have any
+        if (rotten_flesh.number > 0)
+        {
+            pc.current_gold = pc.current_gold + 10 * rotten_flesh.number;
+            system("CLS");
+            std::cout << shop[80] << rotten_flesh.number << " " << rotten_flesh.name << "\n" << shop[81];
+            rotten_flesh.number = 0;
+            ico();
+            shop_sell();
+        }
         break;
     case '3': //if answer is iron ingot
-        //sell iron ingot if they have any
+        if (iron_ingot.number > 0)
+        {
+            pc.current_gold = pc.current_gold + 15 * iron_ingot.number;
+            system("CLS");
+            std::cout << shop[80] << iron_ingot.number << " " << iron_ingot.name << "\n" << shop[81];
+            iron_ingot.number = 0;
+            ico();
+            shop_sell();
+        }
         break;
     case '4': //if answer is gunpowder
-        //sell gunpowder if they have any
+        if (gunpowder.number > 0)
+        {
+            pc.current_gold = pc.current_gold + 25 * gunpowder.number;
+            system("CLS");
+            std::cout << shop[80] << gunpowder.number << " " << gunpowder.name << "\n" << shop[81];
+            gunpowder.number = 0;
+            ico();
+            shop_sell();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[76] << gunpowder.name << "\n" << shop[81];
+            ico();
+            shop_sell();
+        }
         break;
     case '0': //go back
         access_shop();
@@ -983,8 +1028,11 @@ void tests()
 //only a test function have to delete before final iteration ^
 void main_menu() 
 {
-    std::cout << menu[1] << day << "\n";
-    for (int menu_counter = 2; menu_counter <= 6; menu_counter++)
+    if (language == 3)
+        std::cout << day << menu[1] << "\n";
+    else
+        std::cout << menu[1] << day << "\n";
+    for (int menu_counter = 2; menu_counter <= 9; menu_counter++)
         std::cout << menu[menu_counter] << "\n"; //output menu text
     ico();
     switch (a)
@@ -1006,12 +1054,39 @@ void main_menu()
     case '4': //check status
         playercurrentstate(pc); //check status
         break;
+    case '5': //save game
+        save_game();
+        break;
+    case '6':
+        load_game();
+        break;
+    case '0':
+        std::cout << menu[10];
+        ico();
+        if (a == '1')
+            exit(0);
+        else main_menu();
+        break;
     default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         main_menu();
         break;
     }
 }
+void save_game()
+{
+    system("CLS");
+
+    system("CLS");
+    std::cout << "Saving...";
+    
+}
+//have to finish this ^
+void load_game()
+{
+
+}
+//have to finish this ^
 void nice_try()
 {
     std::cout << "Nice try! The game will now close";
@@ -1030,13 +1105,11 @@ int main()
     readweapons(); //read all weapons
     readarmors(); //read all armors
     readitems(); //read all items
-    readshop(); //read the needed text for shop
+    readshop(); //read all shop test
     readfight(); //read all fight text
-    readmenu();
+    readmenu(); //read all menu text
     system("CLS"); //clear console
     //tests(); //tests function
-    //fight_enemy_generate(current_enemy); //generate enemy to fight using randomness
-    //access_shop();
     //playercurrentstate(pc);
     main_menu();
     return 0;
