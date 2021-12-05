@@ -44,7 +44,8 @@ std::ifstream menuenglish("menuenglish.txt"); //english version of the menu
 std::ifstream menuromanian("menuromanian.txt"); //romanian version of the menu
 std::ifstream menuhungarian("menuhungarian.txt"); //hungarian version of the menu
 std::string b, first_name, last_name, c, story[100], questions[100], d, ar, fight[100],shop[100],menu[100];
-int i, language, j, k, r, enemy_number, e, item_number, p, weapon_number, armor_number;
+int i, language, j, k, r, enemy_number, e, item_number, p, weapon_number, armor_number, death_number;
+int day = 1;
 char a; //player input variable
 bool ok_name = false, ok_fight_first = true, ok_access_shop = false;
 struct player //player
@@ -131,6 +132,7 @@ void main_menu(); //main menu
 void readshop(); //shop reading function
 void readfight(); //fight reading function
 void readmenu(); //menu reading function
+void nice_try(); //nice try function
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -197,6 +199,12 @@ void read_language(char a, int& language) //read the story and the questions
         language = 3;
         break;
     }
+    englishstory.close(); //close english version of file
+    romanianstory.close(); //close romanian version of file
+    hungarianstory.close(); //close hungarian version of file
+    questionsenglish.close(); //close english version of file
+    questionsromanian.close(); //close romanian version of file
+    questionshungarian.close(); //close hungarian version of file
 }
 void readweapons()
 {
@@ -278,8 +286,8 @@ void readfight()
         }
         break;
     }
-    fightromanian.close(); //close romanian version of file
     fightenglish.close(); //close english version of file
+    fightromanian.close(); //close romanian version of file
     fighthungarian.close(); //close hungarian version of file
 }
 void readshop()
@@ -313,12 +321,45 @@ void readshop()
             }
         }
     shopenglish.close(); //close english version of file
-    shophungarian.close(); //close hungarian version of file
     shopromanian.close(); //close romanian version of file
+    shophungarian.close(); //close hungarian version of file
 }
 void readmenu()
 {
-
+    i = 1;
+    switch (language)
+    {
+    case 1:
+        if (menuenglish.is_open()) //check if file is open
+        {
+            while (getline(menuenglish, b)) //read line and store in b
+            {
+                menu[i] = b; //add the line to the menu string
+                i++; //increase the number for the line of the menu string
+            }
+        }
+    case 2:
+        if (menuromanian.is_open()) //check if file is open
+        {
+            while (getline(menuromanian, b)) //read line and store in b
+            {
+                menu[i] = b; //add the line to the menu string
+                i++; //increase the number for the line of the menu string
+            }
+        }
+    case 3:
+        if (menuhungarian.is_open()) //check if file is open
+        {
+            while (getline(menuhungarian, b)) //read line and store in b
+            {
+                menu[i] = b; //add the line to the menu string
+                i++; //increase the number for the line of the menu string
+            }
+        }
+    }
+    menuenglish.close(); //close english file
+    menuromanian.close(); //close romanian file
+    menuhungarian.close(); //close hungarian file
 }
 //have to finish this ^
 void access_shop()
@@ -334,7 +375,7 @@ void access_shop()
     case '2': //if answer is sell
         shop_sell(); 
         break;
-    case '0': //go back
+    case '0': //exit
         main_menu();
         std::cout << "\n";
         break;
@@ -709,17 +750,22 @@ void playercurrentstate(player& x) //output current player state
     {
     case 1: //if the language is english
         if (pc.player_name[p] == 's') //special case because english is a special language
-            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter is s
+            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the last letter is s
         else
-            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter isn't s
+            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the last letter isn't s
+        std::cout << "Press any key to continue.";
         break;
     case 2: //if the language is romanian
-        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp;; //if the language is romanian
+        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the language is romanian
+        std::cout << "Apasa orice tasta pentru a continua.";
         break;
     case 3: //if the language is hungarian
-        std::cout << "Jelenlegi statisztikak " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp; //if the language is hungarian
+        std::cout << "Jelenlegi statisztikak " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the language is hungarian
+        std::cout << "Press any key to continue. but hungarian";
         break;
     }
+    ico();
+    main_menu();
 }
 void enemy_stats(enemy& x) //output enemy stats
 {
@@ -937,9 +983,41 @@ void tests()
 //only a test function have to delete before final iteration ^
 void main_menu() 
 {
-
+    std::cout << menu[1] << day << "\n";
+    for (int menu_counter = 2; menu_counter <= 6; menu_counter++)
+        std::cout << menu[menu_counter] << "\n"; //output menu text
+    ico();
+    switch (a)
+    {
+    case '1': //find enemy
+        fight_enemy_generate(current_enemy);
+        fight_action(current_enemy);
+        break;
+    case '2': //shop
+        access_shop();
+        break;
+    case '3': //go to sleep
+        if (day == 2147483646)
+            nice_try();
+        pc.CHP = pc.THP; //restore hp
+        day++; //increase day
+        main_menu();
+        break;
+    case '4': //check status
+        playercurrentstate(pc); //check status
+        break;
+    default: //wrong input
+        std::cout << shop[79] << "\n"; //if wrong input
+        main_menu();
+        break;
+    }
 }
-//have to finish this ^
+void nice_try()
+{
+    std::cout << "Nice try! The game will now close";
+    ico();
+    exit(0);
+}
 int main()
 {
     SetConsoleTitleA("Recover your strength"); //set the title of the game
@@ -954,10 +1032,12 @@ int main()
     readitems(); //read all items
     readshop(); //read the needed text for shop
     readfight(); //read all fight text
+    readmenu();
     system("CLS"); //clear console
-    tests(); //tests function
+    //tests(); //tests function
     //fight_enemy_generate(current_enemy); //generate enemy to fight using randomness
     //access_shop();
     //playercurrentstate(pc);
+    main_menu();
     return 0;
 }
