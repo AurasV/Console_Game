@@ -328,17 +328,17 @@ void access_shop()
     ico(); //read shop action
     switch (a)
     {
-    case '1':
-        shop_buy(); //if answer is buy
+    case '1': //if answer is buy
+        shop_buy(); 
         break;
-    case '2':
-        shop_sell(); //if answer is sell
+    case '2': //if answer is sell
+        shop_sell(); 
         break;
-    case '0':
+    case '0': //go back
         main_menu();
         std::cout << "\n";
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         access_shop();
         break;
@@ -351,19 +351,19 @@ void shop_buy()
     ico(); //read action
     switch (a)
     {
-    case '1':
+    case '1': //if answer is buy armors
         buy_armor();
         break;
-    case '2':
+    case '2': //if answer is buy weapons
         buy_weapon();
         break;
-    case '3':
+    case '3': //if answer is buy health potions
         buy_health_potion();
         break;
-    case '0':
+    case '0': //go back
         access_shop();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         shop_buy();
     }
@@ -376,22 +376,22 @@ void shop_sell()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is bone
         //sell bones if they have any
         break;
-    case '2':
+    case '2': //if answer is rotten flesh
         //sell rotten flesh if they have any
         break;
-    case '3':
+    case '3': //if answer is iron ingot
         //sell iron ingot if they have any
         break;
-    case '4':
+    case '4': //if answer is gunpowder
         //sell gunpowder if they have any
         break;
-    case '0':
+    case '0': //go back
         access_shop();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         shop_sell();
         break;
@@ -405,24 +405,24 @@ void buy_armor()
     ico();
     switch (a)
     {
-    case '1':
+    case '1':  //if answer is leather armor
         buy_leather();
         break;
-    case '2':
+    case '2': //if answer is gold armor
         buy_gold();
         break;
-    case '3':
+    case '3': //if answer is iron armor
         buy_iron();
         break;
-    case '4':
+    case '4': //if answer is diamond armor
         buy_diamond();
         break;
-    case '5':
+    case '5': //if answer is netherite armor
         buy_netherite();
         break;
-    case '0':
+    case '0': //go back
         shop_buy();
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_armor();
     }
@@ -434,22 +434,22 @@ void buy_leather()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is helmet
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '2':
+    case '2': //if answer is chestplate
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '3':
+    case '3': //if answer is pants
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '4':
+    case '4': //if answer is boots
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '0':
+    case '0': //go back
         buy_armor();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_leather();
         break;
@@ -463,22 +463,22 @@ void buy_gold()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is helmet
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '2':
+    case '2': //if answer is chestplate
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '3':
+    case '3': //if answer is pants
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '4':
+    case '4': //if answer is boots
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '0':
+    case '0': //go back
         buy_armor();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_gold();
         break;
@@ -492,22 +492,22 @@ void buy_iron()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is helmet
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '2':
+    case '2': //if answer is chestplate
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '3':
+    case '3': //if answer is pants
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '4':
+    case '4': //if answer is boots
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '0':
+    case '0': //go back
         buy_armor();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_iron();
         break;
@@ -521,22 +521,22 @@ void buy_diamond()
     ico();
     switch (a)
     {
-    case '1':
+    case '1':  //if answer is helmet
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '2':
+    case '2':  //if answer is chestplate
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '3':
+    case '3': //if answer is pants
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '4':
+    case '4': //if answer is boots
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '0':
+    case '0': //go back
         buy_armor();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_diamond();
         break;
@@ -550,22 +550,22 @@ void buy_netherite()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is helmet
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '2':
+    case '2': //if answer is chestplate
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '3':
+    case '3': //if answer is pants
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '4':
+    case '4': //if answer is boots
         //check gold and if its better than currently equipped armor then change or give out message if its appropriate
         break;
-    case '0':
+    case '0': //go back
         buy_armor();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_netherite();
         break;
@@ -579,16 +579,16 @@ void buy_weapon()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is main hand
         buy_main_hand();
         break;
-    case '2':
+    case '2': //if answer is off hand
         buy_off_hand();
         break;
-    case '0':
+    case '0': //go back
         shop_buy();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_weapon();
         break;
@@ -603,25 +603,25 @@ void buy_main_hand()
     ico();
     switch (a)
     {
-    case '1':
+    case '1': //if answer is wooden sword
         //buy wooden sword (if you have enough gold and its better than currently equipped one)
         break;
-    case '2':
+    case '2': //if answer is stone sword
         //buy stone sword (if you have enough gold and its better than currently equipped one)
         break;
-    case '3':
+    case '3': //if answer is iron sword
         //buy iron sword (if you have enough gold and its better than currently equipped one)
         break;
-    case '4':
+    case '4': //if answer is diamond sword
         //buy diamond sword (if you have enough gold and its better than currently equipped one)
         break;
-    case '5':
+    case '5': //if answer is netherite sword
         //buy netherite sword (if you have enough gold and its better than currently equipped one)
         break;
-    case '0':
+    case '0': //go back
         buy_weapon();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_main_hand();
         break;
