@@ -1,0 +1,6 @@
+Day 
+Choose what you want to do: 
+1) Find an Enemy 
+2) Go to the shop 
+3) Go to sleep (Passes day and regenerates HP completely) 
+4) Check your status 

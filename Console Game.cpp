@@ -40,9 +40,12 @@ std::ifstream englishstory("english.txt"); //english version of the story
 std::ifstream shophungarian("shophungarian.txt"); //hungarian version of the shop
 std::ifstream shopromanian("shopromanian.txt"); //romanian version of the shop
 std::ifstream shopenglish("shopenglish.txt"); //english version of the shop
-std::string b, first_name, last_name, c, story[1000], questions[1000], d, ar, fight[1000],shop[1000];
+std::ifstream menuenglish("menuenglish.txt"); //english version of the menu
+std::ifstream menuromanian("menuromanian.txt"); //romanian version of the menu
+std::ifstream menuhungarian("menuhungarian.txt"); //hungarian version of the menu
+std::string b, first_name, last_name, c, story[100], questions[100], d, ar, fight[100],shop[100],menu[100];
 int i, language, j, k, r, enemy_number, e, item_number, p, weapon_number, armor_number;
-char a;
+char a; //player input variable
 bool ok_name = false, ok_fight_first = true, ok_access_shop = false;
 struct player //player
 {
@@ -105,26 +108,29 @@ void fight_action(enemy& current_enemy); //fight function
 void fight_enemy_generate(enemy& enemy); //generate enemy function
 void ico(); //input one character then clear console
 void enemy_stats(enemy& x); //output enemy_stats
-void icm(); //input one word then clear console
 void weapons(weapon& x); //read weapons from file
 void enemies(enemy& x); //read enemy from file
 void armors(armor& x); //read armor from file
 void items(item& x); //read item from file
 void name(); //get the name of the character
 void tests(); //tests funciton
-void access_shop(); // access shop
-void shop_buy();
-void shop_sell();
-void buy_armor();
-void buy_weapon();
-void buy_health_potion();
-void buy_leather();
-void buy_gold();
-void buy_iron();
-void buy_diamond();
-void buy_netherite();
-void buy_main_hand();
-void buy_off_hand();
+void access_shop(); //access shop
+void shop_buy(); //buying section of shop
+void shop_sell(); //selling section of shop
+void buy_armor(); //armor buying section of shop
+void buy_weapon(); //weapon buying section of shop
+void buy_health_potion(); //health potion buying section of shop
+void buy_leather(); //leather armor buying section of shop
+void buy_gold(); //gold armor buying section of shop
+void buy_iron(); //iron armor buying section of shop
+void buy_diamond(); //diamond armor buying section of shop
+void buy_netherite(); //netherite armor buying section of shop
+void buy_main_hand(); //main hand weapon buying section of shop
+void buy_off_hand(); //off hand weapon buying section of shop
+void main_menu(); //main menu
+void readshop(); //shop reading function
+void readfight(); //fight reading function
+void readmenu(); //menu reading function
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -139,7 +145,7 @@ void read_language(char a, int& language) //read the story and the questions
 {
     switch (a)
     {
-    case '1':
+    case '1': //if language is english
         if (englishstory.is_open()) //check if the file is open
         {
             while (getline(englishstory, b)) //read line and store in b
@@ -156,7 +162,7 @@ void read_language(char a, int& language) //read the story and the questions
             }
         language = 1;
         break;
-    case '2':
+    case '2': //if language is romanian
         if (romanianstory.is_open()) //check if the file is open
         {
             while (getline(romanianstory, b)) //read line and store in b
@@ -173,7 +179,7 @@ void read_language(char a, int& language) //read the story and the questions
             }
         language = 2;
         break;
-    case '3':
+    case '3': //if language is hungarian
         if (hungarianstory.is_open()) //check if the file is open
         {
             while (getline(hungarianstory, b)) //read line and store in b
@@ -194,62 +200,62 @@ void read_language(char a, int& language) //read the story and the questions
 }
 void readweapons()
 {
-    weapons(wooden_sword);
-    weapons(stone_sword);
-    weapons(iron_sword);
-    weapons(diamond_sword);
-    weapons(netherite_sword);
-    weapons(bow);
-    weapons(crossbow);
-    weapons(trident);
+    weapons(wooden_sword); //read wooden sword
+    weapons(stone_sword); //read stone sword
+    weapons(iron_sword); //read iron sword
+    weapons(diamond_sword); //read diamond sword
+    weapons(netherite_sword); //read netherite sword
+    weapons(bow); //read bow
+    weapons(crossbow); //read crossbow
+    weapons(trident); //read trident
 }
 void readenemies() //read all enemies
 {
-    enemies(iron_golem);
-    enemies(zombie);
-    enemies(skeleton);
-    enemies(creeper);
-    enemies(husk);
+    enemies(iron_golem); //read iron golem
+    enemies(zombie); //read zombie
+    enemies(skeleton); //read skeleton
+    enemies(creeper); //read creeper
+    enemies(husk); //read husk
 }
-void readarmors()
+void readarmors() //read all armors
 {
-    armors(leatherh);
-    armors(leatherc);
-    armors(leatherp);
-    armors(leatherb);
-    armors(goldh);
-    armors(goldc);
-    armors(goldp);
-    armors(goldb);
-    armors(ironh);
-    armors(ironc);
-    armors(ironp);
-    armors(ironb);
-    armors(diamondh);
-    armors(diamondc);
-    armors(diamondp);
-    armors(diamondb);
-    armors(netheriteh);
-    armors(netheritec);
-    armors(netheritep);
-    armors(netheriteb);
+    armors(leatherh); //read leather helmet
+    armors(leatherc); //read leather chestplate
+    armors(leatherp); //read leather pants
+    armors(leatherb); //read leather boots
+    armors(goldh); //read gold helmet
+    armors(goldc); //read gold chestplate
+    armors(goldp); //read gold pants
+    armors(goldb); //read gold boots
+    armors(ironh); //read iron helmet
+    armors(ironc); //read iron chestplate
+    armors(ironp); //read iron pants
+    armors(ironb); //read iron boots
+    armors(diamondh); //read diamond helmet
+    armors(diamondc); //read diamond chestplate
+    armors(diamondp); //read diamond pants
+    armors(diamondb); //read diamond boots
+    armors(netheriteh); //read netherite helmet
+    armors(netheritec); //read netherite chestplate
+    armors(netheritep); //read netherite pants
+    armors(netheriteb); //read netherite boots
 }
 void readitems() //read all items
 {
-    items(iron_ingot);
-    items(rotten_flesh);
-    items(bone);
-    items(gunpowder);
-    items(normal_hp);
-    items(greater_hp);
-    items(supreme_hp);
+    items(iron_ingot); // read iron ingot
+    items(rotten_flesh); //read rotten flesh
+    items(bone); //read bone
+    items(gunpowder); //read gunpowder
+    items(normal_hp); //read normal health potion
+    items(greater_hp); //read greater health potion
+    items(supreme_hp); //read supreme health potion
 }
 void readfight()
 {
     i = 1;
-    switch (language)
+    switch (language) 
     {
-    case 1:
+    case 1: //if language is english
         if (fightenglish.is_open()) //check if file is open
             while (getline(fightenglish, b)) //read line and store in b
             {
@@ -257,14 +263,14 @@ void readfight()
                 i++; //increase the number for the line of the fight string
             }
         break;
-    case 2:
+    case 2: //if language is romanian
         while (getline(fightromanian, b)) //read line and store in b
         {
             fight[i] = b; //add the line to the fight string
             i++; //increase the number for the line of the fight string
         }
         break;
-    case 3:
+    case 3: //if language is hungarian
         while (getline(fighthungarian, b)) //read line and store in b
         {
             fight[i] = b; //add the line to the fight string
@@ -272,14 +278,14 @@ void readfight()
         }
         break;
     }
-    fightromanian.close();
-    fightenglish.close();
-    fighthungarian.close();
+    fightromanian.close(); //close romanian version of file
+    fightenglish.close(); //close english version of file
+    fighthungarian.close(); //close hungarian version of file
 }
 void readshop()
 {
     i = 1;
-    if (language == 1)
+    if (language == 1) //if language is english
         if (shopenglish.is_open()) //check if file is open
         {
             while (getline(shopenglish, b)) //read line and store in b
@@ -288,7 +294,7 @@ void readshop()
                 i++; //increase the number for the line of the shop string
             }
         }
-    if (language == 2)
+    if (language == 2) //if language is romanian
         if (shopromanian.is_open()) //check if file is open
         {
             while (getline(shopromanian, b)) //read line and store in b
@@ -297,7 +303,7 @@ void readshop()
                 i++; //increase the number for the line of the shop string
             }
         }
-    if (language == 3)
+    if (language == 3) //if language is hungarian
         if (shophungarian.is_open()) //check if file is open
         {
             while (getline(shophungarian, b)) //read line and store in b
@@ -306,10 +312,15 @@ void readshop()
                 i++; //increase the number for the line of the shop string
             }
         }
-    shopenglish.close();
-    shophungarian.close();
-    shopromanian.close();
+    shopenglish.close(); //close english version of file
+    shophungarian.close(); //close hungarian version of file
+    shopromanian.close(); //close romanian version of file
 }
+void readmenu()
+{
+
+}
+//have to finish this ^
 void access_shop()
 {
     for (int shop_counter = 1; shop_counter <= 6; shop_counter++)
@@ -324,7 +335,7 @@ void access_shop()
         shop_sell(); //if answer is sell
         break;
     case '0':
-        //return to main menu function goes here
+        main_menu();
         std::cout << "\n";
         break;
     default:
@@ -386,6 +397,7 @@ void shop_sell()
         break;
     }
 }
+//have to finish this ^
 void buy_armor()
 {
     for (int shop_counter = 12; shop_counter <= 18; shop_counter++)
@@ -443,6 +455,7 @@ void buy_leather()
         break;
     }
 }
+//have to finish this ^
 void buy_gold()
 {
     for (int shop_counter = 25; shop_counter <= 30; shop_counter++)
@@ -471,6 +484,7 @@ void buy_gold()
         break;
     }
 }
+//have to finish this ^
 void buy_iron()
 {
     for (int shop_counter = 31; shop_counter <= 36; shop_counter++)
@@ -499,6 +513,7 @@ void buy_iron()
         break;
     }
 }
+//have to finish this ^
 void buy_diamond()
 {
     for (int shop_counter = 37; shop_counter <= 42; shop_counter++)
@@ -527,6 +542,7 @@ void buy_diamond()
         break;
     }
 }
+//have to finish this ^
 void buy_netherite()
 {
     for (int shop_counter = 43; shop_counter <= 48; shop_counter++)
@@ -555,6 +571,7 @@ void buy_netherite()
         break;
     }
 }
+//have to finish this ^
 void buy_weapon()
 {
     for (int shop_counter = 49; shop_counter <= 52; shop_counter++)
@@ -578,6 +595,7 @@ void buy_weapon()
     }
 
 }
+//have to finish this ^
 void buy_main_hand()
 {
     for (int shop_counter = 53; shop_counter <= 59; shop_counter++)
@@ -609,11 +627,12 @@ void buy_main_hand()
         break;
     }
 }
+//have to finish this ^
 void buy_off_hand()
 {
     for (int shop_counter = 60; shop_counter <= 64; shop_counter++)
         std::cout << shop[shop_counter] << "\n"; //output shop text
-    ico();
+    ico(); //read player's choice
     switch (a)
     {
     case '1':
@@ -625,27 +644,50 @@ void buy_off_hand()
     case '3':
         //buy trident (if you have enough gold and its better than currently equipped one)
         break;
-    case '0':
+    case '0': //go back
         buy_weapon();
         break;
-    default:
+    default: //wrong input
         std::cout << shop[79] << "\n"; //if wrong input
         buy_off_hand();
         break;
     }
 
 }
-void buy_health_potion()
+//have to finish this ^
+void buy_health_potion() //buy health potion
 {
-
+    for (int shop_counter = 65; shop_counter <= 69; shop_counter++)
+        std::cout << shop[shop_counter] << "\n"; //output shop text
+    ico();
+    switch (a)
+    {
+    case '1':
+        //buy normal health potion if you have gold
+        break;
+    case '2':
+        //buy greater health potion if you have gold
+        break;
+    case '3':
+        //buy ultimate health potion if you have gold
+    case '0':
+        shop_buy(); //go back
+        break;
+    default: //wrong input
+        std::cout << shop[79] << "\n"; //if wrong input
+        buy_health_potion();
+        break;
+    }
 }
+//have to finish this ^
 void fight_action(enemy& current_enemy)
 {
     if (ok_fight_first == true)
         std::cout << fight[1] << " " << current_enemy.enemy_name; //you've been attacked by on the first run
     else std::cout << fight[2] << " " << current_enemy.enemy_name; //you're currently fighting on the subsequent ones
 }
-void fight_enemy_generate(enemy& current_enemy)
+//have to finish this ^
+void fight_enemy_generate(enemy& current_enemy) //generate enemy
 {
     int r = (rand() % 100) + 1; //get random number
     if (r <= 32)
@@ -662,41 +704,42 @@ void fight_enemy_generate(enemy& current_enemy)
 void playercurrentstate(player& x) //output current player state
 {
     //system("CLS");
-    p = pc.player_name.length() - 1;
+    p = pc.player_name.length() - 1; //i dont really remember why this is here
     switch (language)
     {
-    case 1:
-        if (pc.player_name[p] == 's') //if the language is english
+    case 1: //if the language is english
+        if (pc.player_name[p] == 's') //special case because english is a special language
             std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter is s
         else
             std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp; //if the last letter isn't s
         break;
-    case 2:
+    case 2: //if the language is romanian
         std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp;; //if the language is romanian
         break;
-    case 3:
-        std::cout << "Current stats for  " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp; //if the language is hungarian
+    case 3: //if the language is hungarian
+        std::cout << "Jelenlegi statisztikak " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp; //if the language is hungarian
         break;
     }
 }
-void enemy_stats(enemy& x) //output enemy_stats
+void enemy_stats(enemy& x) //output enemy stats
 {
     //system("CLS");
     switch (language)
     {
-    case 1:
+    case 1: //if the language is english
         std::cout << "Name: " << x.enemy_name << "\n" << "Attack: " << x.ATK << "\n" << "Defense: " << x.DEF << "\n" << "Total Health Points: " << x.THP << "\n" << "Current Health Points: " << x.CHP << "\n" << "Drops: " << x.drops; // output enemy stats and drops
         break;
-    case 2:
+    case 2: //if the language is romanian
         std::cout << "Nume: " << x.enemy_name << "\n" << "Atac: " << x.ATK << "\n" << "Aparare: " << x.DEF << "\n" << "Puncte Viata Totale: " << x.THP << "\n" << "Puncte Viata Curente: " << x.CHP << "\n" << "Drop-uri: " << x.drops; // output enemy stats and drops
         break;
-    case 3:
+    case 3: //if the language is hungarian
         std::cout << "Nev: " << x.enemy_name << "\n" << "Tamadas: " << x.ATK << "\n" << "Vedekezes: " << x.DEF << "\n" << "Az osszes eletero: " << x.THP << "\n" << "Jelenlegi eletero: " << x.CHP << "\n" << "Eszkozoket: " << x.drops; // output enemy stats and drops
         break;
     }
         std::cout << "\n" << "\n";
 }
-void weapons(weapon& x)
+//have to add the clear console here and finish it after fight functions are done ^
+void weapons(weapon& x) //read weapon from file
 {
     std::ifstream weaponstxt("weapons.txt");
     for (e = 1; e <= weapon_number; e++)
@@ -704,27 +747,27 @@ void weapons(weapon& x)
     std::getline(weaponstxt, b); //getting line
     switch (language)
     {
-    case 1:
-        x.name = b;
+    case 1: //if the language is english
+        x.name = b; //weapon name
         std::getline(weaponstxt, b);
         std::getline(weaponstxt, b);
         break;
-    case 2:
+    case 2: //if the language is romanian
         std::getline(weaponstxt, b);
-        x.name = b;
+        x.name = b; //weapon name
         std::getline(weaponstxt, b);
         break;
-    case 3:
+    case 3: //if the language is hungarian
         getline(weaponstxt, b);
         getline(weaponstxt, b);
-        x.name = b;
+        x.name = b; //weapon name
         break;
     }
-    getline(weaponstxt, b);
-    x.hand = b;
-    weaponstxt >> x.ATK;
-    weapon_number += 5;
-    weaponstxt.close();
+    getline(weaponstxt, b); //get the hand for the weapon
+    x.hand = b; //save weapon hand
+    weaponstxt >> x.ATK; //read weapon atk stat
+    weapon_number += 5; //increase to get to next weapon
+    weaponstxt.close(); //close weapon file
 }
 void enemies(enemy& x) //read enemy from file
 {
@@ -736,27 +779,27 @@ void enemies(enemy& x) //read enemy from file
     std::getline(enemies, d); //getting line
     switch (language)
     {
-    case 1:
+    case 1: //if the language is english
         x.drops = d; //enemy drops
         std::getline(enemies, d);
         std::getline(enemies, d);
         break;
-    case 2:
+    case 2: //if the language is romanian
         std::getline(enemies, d);
-        x.drops = d;
+        x.drops = d; //enemy drops
         std::getline(enemies, d);
         break;
-    case 3:
+    case 3: //if the language is hungarian
         std::getline(enemies, d);
         std::getline(enemies, d);
-        x.drops = d;
+        x.drops = d; //enemy drops
         break;
     }
     enemies >> x.ATK >> x.DEF >> x.THP >> x.CHP; //reading the number stats from file
-    enemy_number = enemy_number + 8;
-    enemies.close();
+    enemy_number = enemy_number + 8; //increase to get to next enemy
+    enemies.close(); //close enemy file
 }
-void armors(armor& x)
+void armors(armor& x) //read armor from file
 {
     std::ifstream armortxt("armor.txt"); //file containg armor stats names and placement
     for (e = 1; e <= armor_number; e++)
@@ -764,55 +807,55 @@ void armors(armor& x)
     std::getline(armortxt, ar);
     switch (language)
     {
-    case 1:
+    case 1: //if the language is english
         x.name = ar; //armor name
         std::getline(armortxt, ar);
         std::getline(armortxt, ar);
         break;
-    case 2:
+    case 2: //if the language is romanian
         std::getline(armortxt, ar);
         x.name = ar; //armor name
         std::getline(armortxt, ar);
         break;
-    case 3:
+    case 3: //if the language is hungarian
         std::getline(armortxt, ar);
         std::getline(armortxt, ar);
         x.name = ar; //armor name
         break;
     }
-    std::getline(armortxt, ar);
-    x.place = ar;
-    armortxt >> x.DEF;
-    armor_number = armor_number + 5;
-    armortxt.close();
+    std::getline(armortxt, ar); //ger armor place
+    x.place = ar; //save armor place
+    armortxt >> x.DEF; //save armor def
+    armor_number = armor_number + 5; //increase to get to next armor piece
+    armortxt.close(); //close armor file
 }
 void items(item& x) //read item from file
 {
-    std::ifstream items("items.txt");
+    std::ifstream items("items.txt"); //items file
     for (e = 1; e <= item_number; e++)
-        std::getline(items, b);
-    std::getline(items, b);
+        std::getline(items, b); //skip unneccessary lines
+    std::getline(items, b); //get first important line
     switch (language)
     {
-    case 1:
-        x.name = b;
+    case 1: //if language is english
+        x.name = b; //item name
         std::getline(items, b);
         std::getline(items, b);
         break;
-    case 2:
+    case 2: //if language is romanian
         std::getline(items, b);
-        x.name = b;
+        x.name = b; //item name
         std::getline(items, b);
         break;
-    case 3:
+    case 3: //if language is hungarian
         std::getline(items, b);
         std::getline(items, b);
-        x.name = b;
+        x.name = b; //item name
         break;
     }
-    items >> x.price;
-    item_number += 4;
-    items.close();
+    items >> x.price; //get the price of item
+    item_number += 4; //increase to get the next item
+    items.close(); //close items file
 }
 void name() //get the name of the character
 {
@@ -841,11 +884,6 @@ void name() //get the name of the character
 void ico() //input one character then clear console
 {
     a = _getch(); //read one character user input
-    system("CLS"); //clear console
-}
-void icm() //input one word then clear console
-{
-    std::cin >> c; //read multiple characters user input
     system("CLS"); //clear console
 }
 void tests()
@@ -896,9 +934,15 @@ void tests()
     enemy_stats(creeper);
     playercurrentstate(pc);
 }
+//only a test function have to delete before final iteration ^
+void main_menu() 
+{
+
+}
+//have to finish this ^
 int main()
 {
-    SetConsoleTitleA("Recover your strength");
+    SetConsoleTitleA("Recover your strength"); //set the title of the game
     srand((int)time(0)); //for randomness
     languagechoice(); //language choice 
     read_language(a, language); //read the story and the questions
@@ -911,9 +955,9 @@ int main()
     readshop(); //read the needed text for shop
     readfight(); //read all fight text
     system("CLS"); //clear console
-    //tests(); //tests function
+    tests(); //tests function
     //fight_enemy_generate(current_enemy); //generate enemy to fight using randomness
     //access_shop();
-    playercurrentstate(pc);
+    //playercurrentstate(pc);
     return 0;
 }
