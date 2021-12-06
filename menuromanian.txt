@@ -7,3 +7,4 @@ Alege ce vrei sa faci:
 5) Salveaza jocul 
 6) Incarca jocul
 0) Iesi din joc
+Esti sigur ca vrei sa iesi? 

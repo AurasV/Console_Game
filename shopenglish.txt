@@ -78,4 +78,6 @@ You don't have any
 You don't have enough gold to buy 
 Incorrect input, please try again. 
 You sold 
-Press any key to continue.
+Press any key to continue. 
+Bought 
+You have better armor already!

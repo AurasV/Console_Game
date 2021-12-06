@@ -19,9 +19,7 @@ int r = (rand() % max_number) + 1; //randomness
 /*
 TO DO:
 finish fight_action function
-finish implementing shop //text already made for all versions
 implement the use for player stats
-make the menu after game start (including but not limited to, text that says where you are and where you can go/do
 make a check for levels (more exactly for when the game is done)
 think of player progression when it comes to leveling up and stats increase from that
 think of how enemies scale
@@ -62,6 +60,7 @@ struct weapon
     std::string name = { " " }; //name
     float ATK = { 0 }; //atk bonus
     std::string hand = { " " }; //main / off hand
+    int price = { 0 }; //price
 };
 struct enemy //enemies
 {
@@ -74,6 +73,7 @@ struct armor //armors
     std::string name = { " " }; //name
     float DEF = { 0 }; //def bonus
     std::string place = { " " }; //equip place
+    int price = { 0 }; //price
 };
 struct item //items
 {
@@ -83,12 +83,12 @@ struct item //items
 }; 
 struct equipment
 {
-    std::string head = { "nothing" }; //head name
-    std::string chest = { "nothing" }; //chest name
-    std::string pants = { "nothing" }; //pants name
-    std::string boots = { "nothing" }; //boots name
-    std::string mainweapon = { "fist" }; //main hand weapon name
-    std::string offweapon = { "nothing" }; //off hand weapon name
+    std::string head = { "-" }; //head name
+    std::string chest = { "-" }; //chest name
+    std::string pants = { "-" }; //pants name
+    std::string boots = { "-" }; //boots name
+    std::string mainweapon = { "-" }; //main hand weapon name
+    std::string offweapon = { "-" }; //off hand weapon name
     int h_def = { 0 }; //head def
     int c_def = { 0 }; //chest def
     int p_def = { 0 }; //pants def
@@ -140,6 +140,10 @@ void readmenu(); //menu reading function
 void nice_try(); //nice try function
 void save_game(); //save game function
 void load_game(); //load game function
+void buy_armor_h(armor x);
+void buy_armor_c(armor x);
+void buy_armor_p(armor x);
+void buy_armor_b(armor x);
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -426,10 +430,20 @@ void shop_sell()
     case '1': //if answer is bone
         if (bone.number > 0)
         {
-            pc.current_gold = pc.current_gold + 5 * bone.number;
+            pc.current_gold = pc.current_gold + bone.price * bone.number;
             system("CLS");
-            std::cout << shop[80] << bone.number << " " << bone.name << "\n" << shop[81];
+            if (language == 3)
+                std::cout << bone.name << shop[80] << bone.number << "\n" << shop[81];
+            else
+                std::cout << shop[80] << bone.number << " " << bone.name << "\n" << shop[81];
             bone.number = 0;
+            ico();
+            shop_sell();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[76] << bone.name << "\n" << shop[81];
             ico();
             shop_sell();
         }
@@ -437,10 +451,20 @@ void shop_sell()
     case '2': //if answer is rotten flesh
         if (rotten_flesh.number > 0)
         {
-            pc.current_gold = pc.current_gold + 10 * rotten_flesh.number;
+            pc.current_gold = pc.current_gold + rotten_flesh.price * rotten_flesh.number;
             system("CLS");
-            std::cout << shop[80] << rotten_flesh.number << " " << rotten_flesh.name << "\n" << shop[81];
+            if (language == 3)
+                std::cout << rotten_flesh.name << shop[80] << rotten_flesh.number << "\n" << shop[81];
+            else
+                std::cout << shop[80] << rotten_flesh.number << " " << rotten_flesh.name << "\n" << shop[81];
             rotten_flesh.number = 0;
+            ico();
+            shop_sell();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[76] << rotten_flesh.name << "\n" << shop[81];
             ico();
             shop_sell();
         }
@@ -448,10 +472,20 @@ void shop_sell()
     case '3': //if answer is iron ingot
         if (iron_ingot.number > 0)
         {
-            pc.current_gold = pc.current_gold + 15 * iron_ingot.number;
+            pc.current_gold = pc.current_gold + iron_ingot.price * iron_ingot.number;
             system("CLS");
-            std::cout << shop[80] << iron_ingot.number << " " << iron_ingot.name << "\n" << shop[81];
+            if (language == 3)
+                std::cout << iron_ingot.name << shop[80] << iron_ingot.number << "\n" << shop[81];
+            else 
+                std::cout << shop[80] << iron_ingot.number << " " << iron_ingot.name << "\n" << shop[81];
             iron_ingot.number = 0;
+            ico();
+            shop_sell();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[76] << iron_ingot.name << "\n" << shop[81];
             ico();
             shop_sell();
         }
@@ -459,9 +493,12 @@ void shop_sell()
     case '4': //if answer is gunpowder
         if (gunpowder.number > 0)
         {
-            pc.current_gold = pc.current_gold + 25 * gunpowder.number;
+            pc.current_gold = pc.current_gold + gunpowder.price * gunpowder.number;
             system("CLS");
-            std::cout << shop[80] << gunpowder.number << " " << gunpowder.name << "\n" << shop[81];
+            if (language == 3)
+                std::cout << gunpowder.name << shop[80] << gunpowder.number << "\n" << shop[81];
+            else
+                std::cout << shop[80] << gunpowder.number << " " << gunpowder.name << "\n" << shop[81];
             gunpowder.number = 0;
             ico();
             shop_sell();
@@ -521,16 +558,16 @@ void buy_leather()
     switch (a)
     {
     case '1': //if answer is helmet
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_h(leatherh);
         break;
     case '2': //if answer is chestplate
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_c(leatherc);
         break;
     case '3': //if answer is pants
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_p(leatherp);
         break;
     case '4': //if answer is boots
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_b(leatherb);
         break;
     case '0': //go back
         buy_armor();
@@ -541,7 +578,6 @@ void buy_leather()
         break;
     }
 }
-//have to finish this ^
 void buy_gold()
 {
     for (int shop_counter = 25; shop_counter <= 30; shop_counter++)
@@ -550,16 +586,16 @@ void buy_gold()
     switch (a)
     {
     case '1': //if answer is helmet
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_h(goldh);
         break;
     case '2': //if answer is chestplate
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_c(goldc);
         break;
     case '3': //if answer is pants
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_p(goldp);
         break;
     case '4': //if answer is boots
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_b(goldb);
         break;
     case '0': //go back
         buy_armor();
@@ -579,16 +615,16 @@ void buy_iron()
     switch (a)
     {
     case '1': //if answer is helmet
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_h(ironh);
         break;
     case '2': //if answer is chestplate
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_c(ironc);
         break;
     case '3': //if answer is pants
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_p(ironp);
         break;
     case '4': //if answer is boots
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_b(ironb);
         break;
     case '0': //go back
         buy_armor();
@@ -608,16 +644,16 @@ void buy_diamond()
     switch (a)
     {
     case '1':  //if answer is helmet
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_h(diamondh);
         break;
     case '2':  //if answer is chestplate
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_c(diamondc);
         break;
     case '3': //if answer is pants
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_p(diamondp);
         break;
     case '4': //if answer is boots
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_b(diamondb);
         break;
     case '0': //go back
         buy_armor();
@@ -637,16 +673,16 @@ void buy_netherite()
     switch (a)
     {
     case '1': //if answer is helmet
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_h(netheriteh);
         break;
     case '2': //if answer is chestplate
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_c(netheritec);
         break;
     case '3': //if answer is pants
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_p(netheritep);
         break;
     case '4': //if answer is boots
-        //check gold and if its better than currently equipped armor then change or give out message if its appropriate
+        buy_armor_b(netheriteb);
         break;
     case '0': //go back
         buy_armor();
@@ -789,23 +825,25 @@ void fight_enemy_generate(enemy& current_enemy) //generate enemy
 }
 void playercurrentstate(player& x) //output current player state
 {
+    int equip_def = equip.h_def + equip.c_def + equip.p_def + equip.b_def;
+    int equip_atk = equip.mw_atk + equip.ow_atk;
     //system("CLS");
     p = pc.player_name.length() - 1; //i dont really remember why this is here
     switch (language)
     {
     case 1: //if the language is english
         if (pc.player_name[p] == 's') //special case because english is a special language
-            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the last letter is s
+            std::cout << pc.player_name << char(39) << " current stats are:\nAttack: " << pc.ATK + equip_atk << "\nDefense: " << pc.DEF + equip_def << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n" << "Helmet: " << equip.head << "\n" << "Chestplate: " << equip.chest << "\n" << "Pants: " << equip.pants << "\n" << "Boots: " << equip.boots << "\n"; //if the last letter is s
         else
-            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK << "\nDefense: " << pc.DEF << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the last letter isn't s
+            std::cout << pc.player_name << char(39) << "s current stats are:\nAttack: " << pc.ATK + equip_atk << "\nDefense: " << pc.DEF + equip_def << "\nTotal Health Point: " << pc.THP << "\nCurrent Health Points: " << pc.CHP << "\nLevel: " << pc.level << "\nGold: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Until Level Up: " << pc.xp_to_next_level - pc.current_xp << "\n" << "Helmet: " << equip.head << "\n" << "Chestplate: " << equip.chest << "\n" << "Pants: " << equip.pants << "\n" << "Boots: " << equip.boots << "\n"; //if the last letter isn't s
         std::cout << "Press any key to continue.";
         break;
     case 2: //if the language is romanian
-        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK << "\nAparare: " << pc.DEF << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the language is romanian
+        std::cout << "Statisticile Curente pentru " << pc.player_name << " sunt:\n" << "Atac: " << pc.ATK + equip_atk << "\nAparare: " << pc.DEF + equip_def << "\nPuncte de Viata Totale: " << pc.THP << "\nPuncte de Viata Curente: " << pc.CHP << "\nNivel: " << pc.level << "\nAur: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP Pana la Cresterea Nivelului: " << pc.xp_to_next_level - pc.current_xp << "\n" << "Casca: " << equip.head << "\n" << "Platosa: " << equip.chest << "\n" << "Jambiere: " << equip.pants << "\n" << "Cizme: " << equip.boots << "\n"; //if the language is romanian
         std::cout << "Apasa orice tasta pentru a continua.";
         break;
     case 3: //if the language is hungarian
-        std::cout << "Jelenlegi statisztikak " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK << "\nVedekezes: " << pc.DEF << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp << "\n"; //if the language is hungarian
+        std::cout << "Jelenlegi statisztikak " << pc.player_name << ":\n" << "Tamadas : " << pc.ATK + equip_atk << "\nVedekezes: " << pc.DEF + equip_def << "\nAz osszes eletero: " << pc.THP << "\nJelenlegi eletero: " << pc.CHP << "\nSzint: " << pc.level << "\nArany: " << pc.current_gold << "\nXP: " << pc.current_xp << "\nXP szukseges a szint lepeshez: " << pc.xp_to_next_level - pc.current_xp << "\n" << "Sisak: " << equip.head << "\n" << "Pancel: " << equip.chest << "\n" << "Nadrag: " << equip.pants << "\n" << "Csizma: " << equip.boots << "\n"; //if the language is hungarian
         std::cout << "Press any key to continue. but hungarian";
         break;
     }
@@ -857,7 +895,8 @@ void weapons(weapon& x) //read weapon from file
     getline(weaponstxt, b); //get the hand for the weapon
     x.hand = b; //save weapon hand
     weaponstxt >> x.ATK; //read weapon atk stat
-    weapon_number += 5; //increase to get to next weapon
+    weaponstxt >> x.price;
+    weapon_number += 6; //increase to get to next weapon
     weaponstxt.close(); //close weapon file
 }
 void enemies(enemy& x) //read enemy from file
@@ -917,7 +956,8 @@ void armors(armor& x) //read armor from file
     std::getline(armortxt, ar); //ger armor place
     x.place = ar; //save armor place
     armortxt >> x.DEF; //save armor def
-    armor_number = armor_number + 5; //increase to get to next armor piece
+    armortxt >> x.price;
+    armor_number += 6; //increase to get to next armor piece
     armortxt.close(); //close armor file
 }
 void items(item& x) //read item from file
@@ -988,35 +1028,35 @@ void tests()
     std::cout << greater_hp.name << "\n" << greater_hp.price << "\n";
     std::cout << supreme_hp.name << "\n" << supreme_hp.price << "\n";
     std::cout << "\n" << "Weapons: " << "\n";
-    std::cout << wooden_sword.name << "\n" << wooden_sword.ATK << "\n" << wooden_sword.hand << "\n";
-    std::cout << stone_sword.name << "\n" << stone_sword.ATK << "\n" << stone_sword.hand << "\n";
-    std::cout << iron_sword.name << "\n" << iron_sword.ATK << "\n" << iron_sword.hand << "\n";
-    std::cout << diamond_sword.name << "\n" << diamond_sword.ATK << "\n" << diamond_sword.hand << "\n";
-    std::cout << netherite_sword.name << "\n" << netherite_sword.ATK << "\n" << netherite_sword.hand << "\n";
-    std::cout << bow.name << "\n" << bow.ATK << "\n" << bow.hand << "\n";
-    std::cout << crossbow.name << "\n" << crossbow.ATK << "\n" << crossbow.hand << "\n";
-    std::cout << trident.name << "\n" << trident.ATK << "\n" << trident.hand << "\n";
+    std::cout << wooden_sword.name << "\n" << wooden_sword.ATK << "\n" << wooden_sword.hand << "\n" << wooden_sword.price << "\n";
+    std::cout << stone_sword.name << "\n" << stone_sword.ATK << "\n" << stone_sword.hand << "\n" << stone_sword.price << "\n";
+    std::cout << iron_sword.name << "\n" << iron_sword.ATK << "\n" << iron_sword.hand << "\n" << iron_sword.price << "\n";
+    std::cout << diamond_sword.name << "\n" << diamond_sword.ATK << "\n" << diamond_sword.hand << "\n" << diamond_sword.price << "\n";
+    std::cout << netherite_sword.name << "\n" << netherite_sword.ATK << "\n" << netherite_sword.hand << "\n" << netherite_sword.price << "\n";
+    std::cout << bow.name << "\n" << bow.ATK << "\n" << bow.hand << "\n" << bow.price << "\n";
+    std::cout << crossbow.name << "\n" << crossbow.ATK << "\n" << crossbow.hand << "\n" << crossbow.price << "\n";
+    std::cout << trident.name << "\n" << trident.ATK << "\n" << trident.hand << "\n" <<trident.price << "\n";
     std::cout << "\n" << "Armors: " << "\n";
-    std::cout << leatherh.name << "\n" << leatherh.DEF << "\n" << leatherh.place << "\n";
-    std::cout << leatherc.name << "\n" << leatherc.DEF << "\n" << leatherc.place << "\n";
-    std::cout << leatherp.name << "\n" << leatherp.DEF << "\n" << leatherp.place << "\n";
-    std::cout << leatherb.name << "\n" << leatherb.DEF << "\n" << leatherb.place << "\n";
-    std::cout << goldh.name << "\n" << goldh.DEF << "\n" << goldh.place << "\n";
-    std::cout << goldc.name << "\n" << goldc.DEF << "\n" << goldc.place << "\n";
-    std::cout << goldp.name << "\n" << goldp.DEF << "\n" << goldp.place << "\n";
-    std::cout << goldb.name << "\n" << goldb.DEF << "\n" << goldb.place << "\n";
-    std::cout << ironh.name << "\n" << ironh.DEF << "\n" << ironh.place << "\n";
-    std::cout << ironc.name << "\n" << ironc.DEF << "\n" << ironc.place << "\n";
-    std::cout << ironp.name << "\n" << ironp.DEF << "\n" << ironp.place << "\n";
-    std::cout << ironb.name << "\n" << ironb.DEF << "\n" << ironb.place << "\n";
-    std::cout << diamondh.name << "\n" << diamondh.DEF << "\n" << diamondh.place << "\n";
-    std::cout << diamondc.name << "\n" << diamondc.DEF << "\n" << diamondc.place << "\n";
-    std::cout << diamondp.name << "\n" << diamondp.DEF << "\n" << diamondp.place << "\n";
-    std::cout << diamondb.name << "\n" << diamondb.DEF << "\n" << diamondb.place << "\n";
-    std::cout << netheriteh.name << "\n" << netheriteh.DEF << "\n" << netheriteh.place << "\n";
-    std::cout << netheritec.name << "\n" << netheritec.DEF << "\n" << netheritec.place << "\n";
-    std::cout << netheritep.name << "\n" << netheritep.DEF << "\n" << netheritep.place << "\n";
-    std::cout << netheriteb.name << "\n" << netheriteb.DEF << "\n" << netheriteb.place << "\n";
+    std::cout << leatherh.name << "\n" << leatherh.DEF << "\n" << leatherh.place << "\n" << leatherh.price << "\n";
+    std::cout << leatherc.name << "\n" << leatherc.DEF << "\n" << leatherc.place << "\n" << leatherc.price << "\n";
+    std::cout << leatherp.name << "\n" << leatherp.DEF << "\n" << leatherp.place << "\n" << leatherp.price << "\n";
+    std::cout << leatherb.name << "\n" << leatherb.DEF << "\n" << leatherb.place << "\n" << leatherb.price << "\n";
+    std::cout << goldh.name << "\n" << goldh.DEF << "\n" << goldh.place << "\n" << goldh.price << "\n";
+    std::cout << goldc.name << "\n" << goldc.DEF << "\n" << goldc.place << "\n" << goldc.price << "\n";
+    std::cout << goldp.name << "\n" << goldp.DEF << "\n" << goldp.place << "\n" << goldp.price << "\n";
+    std::cout << goldb.name << "\n" << goldb.DEF << "\n" << goldb.place << "\n" << goldb.price << "\n";
+    std::cout << ironh.name << "\n" << ironh.DEF << "\n" << ironh.place << "\n" << ironh.price << "\n";
+    std::cout << ironc.name << "\n" << ironc.DEF << "\n" << ironc.place << "\n" << ironc.price << "\n";
+    std::cout << ironp.name << "\n" << ironp.DEF << "\n" << ironp.place << "\n" << ironp.price << "\n";
+    std::cout << ironb.name << "\n" << ironb.DEF << "\n" << ironb.place << "\n" << ironb.price << "\n";
+    std::cout << diamondh.name << "\n" << diamondh.DEF << "\n" << diamondh.place << "\n" << diamondh.price << "\n";
+    std::cout << diamondc.name << "\n" << diamondc.DEF << "\n" << diamondc.place << "\n" << diamondc.price << "\n";
+    std::cout << diamondp.name << "\n" << diamondp.DEF << "\n" << diamondp.place << "\n" << diamondp.price << "\n";
+    std::cout << diamondb.name << "\n" << diamondb.DEF << "\n" << diamondb.place << "\n" << diamondb.price << "\n";
+    std::cout << netheriteh.name << "\n" << netheriteh.DEF << "\n" << netheriteh.place << "\n" << netheriteh.price << "\n";
+    std::cout << netheritec.name << "\n" << netheritec.DEF << "\n" << netheritec.place << "\n" << netheritec.price << "\n";
+    std::cout << netheritep.name << "\n" << netheritep.DEF << "\n" << netheritep.place << "\n" << netheritep.price << "\n";
+    std::cout << netheriteb.name << "\n" << netheriteb.DEF << "\n" << netheriteb.place << "\n" << netheriteb.price << "\n";
     std::cout << "\n" << "Enemies:" << "\n";
     enemy_stats(skeleton);
     enemy_stats(husk);
@@ -1061,10 +1101,14 @@ void main_menu()
         load_game();
         break;
     case '0':
-        std::cout << menu[10];
+        std::cout << menu[10] << "\n" << questions[3] << "\n" << questions[4];
         ico();
         if (a == '1')
+        {
+            system("CLS");
+            std::cout << "Quitting...";
             exit(0);
+        }
         else main_menu();
         break;
     default: //wrong input
@@ -1093,10 +1137,132 @@ void nice_try()
     ico();
     exit(0);
 }
+void buy_armor_h(armor x) //buy helmet function
+{
+    if (pc.current_gold >= x.price && x.DEF > equip.h_def)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.h_def = x.DEF;
+        equip.head = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << "\n" << shop[81];
+        ico();
+        buy_armor();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[83] << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+    }
+}
+void buy_armor_c(armor x) //buy chestplate function
+{
+    if (pc.current_gold >= x.price && x.DEF > equip.c_def)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.c_def = x.DEF;
+        equip.chest = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << "\n" << shop[81];
+        ico();
+        buy_armor();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[83] << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+    }
+}
+void buy_armor_p(armor x) //buy pants function
+{
+    if (pc.current_gold >= x.price && x.DEF > equip.p_def)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.p_def = x.DEF;
+        equip.pants = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << "\n" << shop[81];
+        ico();
+        buy_armor();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[83] << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+    }
+}
+void buy_armor_b(armor x) //buy boots function
+{
+    if (pc.current_gold >= x.price && x.DEF > equip.b_def)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.b_def = x.DEF;
+        equip.boots = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << "\n" << shop[81];
+        ico();
+        buy_armor();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[83] << "\n" << shop[81];
+            ico();
+            buy_armor();
+        }
+    }
+}
 int main()
 {
+    std::cout << "Loading...";
     SetConsoleTitleA("Recover your strength"); //set the title of the game
     srand((int)time(0)); //for randomness
+    system("CLS");
     languagechoice(); //language choice 
     read_language(a, language); //read the story and the questions
     name(); //get the name of the character
@@ -1111,6 +1277,10 @@ int main()
     system("CLS"); //clear console
     //tests(); //tests function
     //playercurrentstate(pc);
+    bone.number = 200;
+    gunpowder.number = 200;
+    iron_ingot.number = 200;
+    rotten_flesh.number = 200;
     main_menu();
     return 0;
 }

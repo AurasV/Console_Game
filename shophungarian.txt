@@ -77,5 +77,7 @@ Nem rendelkezzel ezzel az eszkozzel
 !
 Nincs elegendo aranyad ahiz hogy ezt megvedd 
 Hiba, kerlek probald ujra: 
-Sold but hungarian 
+ adtal el 
 Nyomji barmilyen gombot a kilepeshez
+Bought but hungarian 
+You have better armor already but hungarian!

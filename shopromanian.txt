@@ -78,3 +78,6 @@ Nu ai
 Nu ai destul aur pentru a cumpara 
 Intrare incorecta, te rog incearca din nou. 
 Ai vandut 
+Apasa orice tasta pentru a continua. 
+Ai cumparat 
+Ai armura mai buna deja!
