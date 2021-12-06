@@ -45,7 +45,7 @@ std::string b, first_name, last_name, c, story[100], questions[100], d, ar, figh
 int i, language, j, k, r, enemy_number, e, item_number, p, weapon_number, armor_number, death_number;
 int day = 1;
 char a; //player input variable
-bool ok_name = false, ok_fight_first = true, ok_access_shop = false;
+bool ok_name = false, ok_fight_first = true, ok_access_shop = false, test;
 struct player //player
 {
     std::string player_name = { " " }; //player name
@@ -606,7 +606,6 @@ void buy_gold()
         break;
     }
 }
-//have to finish this ^
 void buy_iron()
 {
     for (int shop_counter = 31; shop_counter <= 36; shop_counter++)
@@ -635,7 +634,6 @@ void buy_iron()
         break;
     }
 }
-//have to finish this ^
 void buy_diamond()
 {
     for (int shop_counter = 37; shop_counter <= 42; shop_counter++)
@@ -664,7 +662,6 @@ void buy_diamond()
         break;
     }
 }
-//have to finish this ^
 void buy_netherite()
 {
     for (int shop_counter = 43; shop_counter <= 48; shop_counter++)
@@ -693,7 +690,6 @@ void buy_netherite()
         break;
     }
 }
-//have to finish this ^
 void buy_weapon()
 {
     for (int shop_counter = 49; shop_counter <= 52; shop_counter++)
@@ -717,7 +713,6 @@ void buy_weapon()
     }
 
 }
-//have to finish this ^
 void buy_main_hand()
 {
     for (int shop_counter = 53; shop_counter <= 59; shop_counter++)
@@ -850,6 +845,7 @@ void playercurrentstate(player& x) //output current player state
     ico();
     main_menu();
 }
+//have to add system clear before final production ^
 void enemy_stats(enemy& x) //output enemy stats
 {
     //system("CLS");
@@ -1277,10 +1273,14 @@ int main()
     system("CLS"); //clear console
     //tests(); //tests function
     //playercurrentstate(pc);
-    bone.number = 200;
-    gunpowder.number = 200;
-    iron_ingot.number = 200;
-    rotten_flesh.number = 200;
+    test = true;
+    if (test == true)
+    {
+        bone.number = 200;
+        gunpowder.number = 200;
+        iron_ingot.number = 200;
+        rotten_flesh.number = 200;
+    }
     main_menu();
     return 0;
 }
