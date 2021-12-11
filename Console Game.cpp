@@ -95,6 +95,9 @@ struct equipment
     int b_def = { 0 }; //boots def
     int mw_atk = { 0 }; //main hand weapon atk
     int ow_atk = { 0 }; //off hand weapon atk
+    int npot_nr = { 0 }; //normal potion number
+    int spot_nr = { 0 }; //superior potion number
+    int upot_nr = { 0 }; //ultimate potion number
 };
 armor leatherh, leatherc, leatherp, leatherb, goldh, goldc, goldp, goldb, ironh, ironc, ironp, ironb, diamondh, diamondc, diamondp, diamondb, netheriteh, netheritec, netheritep, netheriteb; //armors
 weapon wooden_sword, stone_sword, iron_sword, diamond_sword, netherite_sword, bow, crossbow, trident; //weapons
@@ -144,6 +147,8 @@ void buy_armor_h(armor x);
 void buy_armor_c(armor x);
 void buy_armor_p(armor x);
 void buy_armor_b(armor x);
+void buy_main(weapon x);
+void buy_off(weapon x);
 void languagechoice() //language choice
 {
     std::cout << "Choose a language.\nAlege limba.\nValassz nyelvet.\n\n\n1)English/Engleza/Angol\n2)Romana/Romanian/Roman\n3)Magyar/Maghiara/Hungarian\n";
@@ -520,7 +525,6 @@ void shop_sell()
         break;
     }
 }
-//have to finish this ^
 void buy_armor()
 {
     for (int shop_counter = 12; shop_counter <= 18; shop_counter++)
@@ -721,19 +725,19 @@ void buy_main_hand()
     switch (a)
     {
     case '1': //if answer is wooden sword
-        //buy wooden sword (if you have enough gold and its better than currently equipped one)
+        buy_main(wooden_sword);
         break;
     case '2': //if answer is stone sword
-        //buy stone sword (if you have enough gold and its better than currently equipped one)
+        buy_main(stone_sword);
         break;
     case '3': //if answer is iron sword
-        //buy iron sword (if you have enough gold and its better than currently equipped one)
+        buy_main(iron_sword);
         break;
     case '4': //if answer is diamond sword
-        //buy diamond sword (if you have enough gold and its better than currently equipped one)
+        buy_main(diamond_sword);
         break;
     case '5': //if answer is netherite sword
-        //buy netherite sword (if you have enough gold and its better than currently equipped one)
+        buy_main(netherite_sword);
         break;
     case '0': //go back
         buy_weapon();
@@ -744,7 +748,6 @@ void buy_main_hand()
         break;
     }
 }
-//have to finish this ^
 void buy_off_hand()
 {
     for (int shop_counter = 60; shop_counter <= 64; shop_counter++)
@@ -752,14 +755,14 @@ void buy_off_hand()
     ico(); //read player's choice
     switch (a)
     {
-    case '1':
-        //buy bow (if you have enough gold and its better than currently equipped one)
+    case '1': //if the answer is bow
+        buy_off(bow);
         break;
-    case '2':
-        //buy crossbow (if you have enough gold and its better than currently equipped one)
+    case '2': //if the answer is crossbow
+        buy_off(crossbow);
         break;
-    case '3':
-        //buy trident (if you have enough gold and its better than currently equipped one)
+    case '3': //if the answer is trident
+        buy_off(trident);
         break;
     case '0': //go back
         buy_weapon();
@@ -771,7 +774,6 @@ void buy_off_hand()
     }
 
 }
-//have to finish this ^
 void buy_health_potion() //buy health potion
 {
     for (int shop_counter = 65; shop_counter <= 69; shop_counter++)
@@ -1250,6 +1252,66 @@ void buy_armor_b(armor x) //buy boots function
             std::cout << shop[83] << "\n" << shop[81];
             ico();
             buy_armor();
+        }
+    }
+}
+void buy_main(weapon x)
+{
+    if (pc.current_gold >= x.price && x.ATK > equip.mw_atk)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.mw_atk = x.ATK;
+        equip.mainweapon = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << "\n" << shop[81];
+        ico();
+        buy_main_hand();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_main_hand();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[84] << "\n" << shop[81];
+            ico();
+            buy_main_hand();
+        }
+    }
+}
+void buy_off(weapon x)
+{
+    if (pc.current_gold >= x.price && x.ATK > equip.ow_atk)
+    {
+        pc.current_gold = pc.current_gold - x.price;
+        equip.ow_atk = x.ATK;
+        equip.offweapon = x.name;
+        system("CLS");
+        std::cout << shop[82] << x.name << shop[81];
+        ico();
+        buy_off_hand();
+    }
+    else
+    {
+        if (pc.current_gold < x.price)
+        {
+            system("CLS");
+            std::cout << shop[78] << x.name << "\n" << shop[81];
+            ico();
+            buy_off_hand();
+        }
+        else
+        {
+            system("CLS");
+            std::cout << shop[84] << "\n" << shop[81];
+            ico();
+            buy_off_hand();
         }
     }
 }
