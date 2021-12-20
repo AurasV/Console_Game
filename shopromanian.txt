@@ -80,4 +80,5 @@ Intrare incorecta, te rog incearca din nou.
 Ai vandut 
 Apasa orice tasta pentru a continua. 
 Ai cumparat 
-Ai armura mai buna deja!
+Ai armura mai buna deja! 
+Ai arma mai buna deja! 

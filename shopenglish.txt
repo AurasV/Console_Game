@@ -80,4 +80,5 @@ Incorrect input, please try again.
 You sold 
 Press any key to continue. 
 Bought 
-You have better armor already!
+You have better armor already! 
+You have better weapon already! 

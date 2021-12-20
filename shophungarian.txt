@@ -57,7 +57,7 @@ Valassz fo fegyvert:
 4) Gyemant kard +4 tamadas -400A 
 5) Netherita kard +5 tamadas -500A 
 0) Vissza 
-Valasz masodlagos fegyvert: 
+Valasz masodlagos fegyvert:
 1) Ij +3 tamadas -300A 
 2) Szamszerij +4 tamadas -400A 
 3) Szigony +5 tamadas -500A 
@@ -81,3 +81,4 @@ Hiba, kerlek probald ujra:
 Nyomji barmilyen gombot a kilepeshez
 Bought but hungarian 
 You have better armor already but hungarian!
+You have better weapon already but hungarian! 
